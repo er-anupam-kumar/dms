@@ -1,0 +1,26 @@
+<div class="card product_item">
+  <div class="card-body h-100">
+      <div class="d-flex">
+          <span class="text-secondary small text-uppercase">{{ productbard }}</span>
+          <span class="ml-auto">
+              <i class="zmdi zmdi-favorite-outline text-danger"></i>
+          </span>
+      </div>
+      <h3 class="h6 mb-2 font-weight-bold text-uppercase">{{ productname }}</h3>
+      <div class="d-flex">
+          <h4 class="h5 w-50 font-weight-bold text-danger m-0">{{discountprice}}
+              <span class="text-secondary font-weight-normal ml-1 prev-price">{{orignalprice}}</span>
+          </h4>
+          <span class="tx-15 ml-auto star">
+            <!-- <i class="{{ratingcount}}"></i> --> 
+            <i class="zmdi-star text-warning"></i>
+            <i class="zmdi-star text-warning"></i>
+            <i class="zmdi-star text-warning"></i>
+            <i class="zmdi-star text-warning"></i>
+            <i class="zmdi-star text-warning"></i>
+          </span>
+      </div>
+      <img src="{{productimg}}" class="w-100 mt-2 mb-3" alt="product-image">
+      <button class="btn btn-primary btn-block mb-0"> <i class="zmdi zmdi-shopping-cart-plus mr-1"></i> Add To Cart </button>
+  </div>
+</div>

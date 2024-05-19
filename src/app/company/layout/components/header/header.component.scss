@@ -1,0 +1,18 @@
+.header-title-name {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 600px) {
+  .header-company-name {
+    font-size: 10px !important;
+    font-weight: 500;
+  }
+  .header-title-name {
+    margin-top: 18px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}

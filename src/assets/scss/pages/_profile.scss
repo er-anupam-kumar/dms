@@ -1,0 +1,209 @@
+.profile-page{
+  .profile-main{
+      margin-bottom: 100px;
+  }
+  .profile-header{
+      position: relative;
+      .user_pic{
+          position: absolute;
+          bottom: -13px;
+          z-index: 99;
+      }
+      .back-profile{
+          overflow: hidden;
+          height: 550px;
+          border-radius: .55rem;
+          @media screen and (max-width: 991px) {
+              height: 350px;
+          }
+          @media screen and (max-width: 767px) {
+              height: 250px;
+          }
+          @media screen and (max-width: 480px) {
+              height: 190px;
+          }
+      }
+      .detail{
+          color: $white;
+          display: flex;
+          position: absolute;
+          bottom: -50px;
+          left:50px;
+          .u-profile-img {
+              @media screen and (max-width: 767px) {
+                  width: 100px;
+              }
+              @media screen and (max-width: 480px) {
+                  width: 80px;
+                  margin-right: 5px !important;
+              }
+          }
+          .u_name{
+              h4{
+                  @media screen and (max-width: 480px) {
+                      font-size: 16px;
+                  }
+              }
+          }
+          @media screen and (max-width: 767px) {
+              left:15px;
+              bottom: -38px;
+          }
+          @media screen and (max-width: 480px) {
+              bottom: -23px;
+          }
+      }
+      .user_earnings{
+          @extend .align-center;
+          color: var(--color-500);
+          h4{
+              @extend .m-t-0;
+          }
+          span{
+              @extend .displayblock;
+          }
+
+      }
+      .profile-setting{
+          position: absolute;
+          right: 0px;
+          bottom: -25px;
+          .nav-tabs>.nav-item>.nav-link{
+              height: 45px;
+              width: 45px;
+              line-height: 57px;
+              text-align: center;
+              padding: 0px;
+              border-radius:50%;
+              margin-right: 10px;
+              background-color: var(--color-500);
+              border: 1px solid var(--border-color) !important;
+              color: var(--color-fff);
+              cursor: pointer;
+          }
+      }
+  }
+}
+.login-session {
+padding: 30px 0;
+position: relative;
+border-bottom: 1px solid var(--border-color);
+
+.device-icon {
+  font-size: 25px;
+  float: left;
+}
+
+.login-info {
+  padding-left: 40px;
+
+  .login-title {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+  }
+
+  .login-detail {
+    color: $color-muted;
+  }
+}
+
+.btn-logout {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  padding: 0;
+  margin-top: -11px;
+}
+}
+
+ul.list-login-session {
+
+
+> li:last-child .login-session {
+  border-bottom: none;
+}
+}
+
+ul.list-email-received {
+> li {
+  margin-bottom: 10px;
+}
+}
+
+.connected-app {
+padding: 10px 0;
+position: relative;
+border-bottom: 1px solid var(--border-color);
+
+.app-icon {
+  font-size: 22px;
+  float: left;
+}
+
+.connection-info {
+  padding-left: 40px;
+
+  .app-title {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+  }
+
+  .actions a {
+    margin-right: 15px;
+  }
+}
+}
+
+ul.list-connected-app {
+> li:first-child .connected-app {
+  padding-top: 0;
+}
+
+> li:last-child .connected-app {
+  border-bottom: none;
+}
+}
+
+@media only screen and (max-width: 992px) {
+  .profile-page{
+      .user_earnings{
+          display: none;
+      }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .profile-page{
+
+      .profile-header{
+          text-align: center;
+
+          .user_pic{
+              position: relative;
+              top: 0;
+              bottom: auto;
+              margin: 0 auto;
+          }
+          .detail{
+              margin: 0;
+              padding-top: 15px;
+
+              .u_name{
+                  margin: 0;
+              }
+
+              #m_area_chart{
+                  display: none;
+              }
+          }
+      }
+
+      .profile_tab{
+          margin-top: 20px;
+          .nav-link{
+              font-size: 13px;
+              padding: 9px 12px;
+          }
+      }
+  }
+}

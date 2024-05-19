@@ -1,0 +1,41 @@
+
+.pricing {
+	color: var(--color-600);
+    @extend .p-l-0;
+    @extend .m-b-0;
+    @extend .align-center;
+    li{
+        list-style: none;
+        padding: 10px;
+
+        &:first-child,
+        &:last-child{
+            padding: 15px 13px;
+        }
+        &:nth-last-child(2) {
+            padding: 30px 13px;
+        }
+        + li{
+            border-top: 1px solid var(--border-color);
+        }
+    }
+
+    span.big {
+        font-size: 32px;
+    }
+
+    h3 {
+        @extend .m-b-0;
+        font-size: 36px;
+    }
+
+    span {
+        color: var(--color-500);
+        font-weight: normal;
+    }
+    &.active{
+        span.big, h3{
+            color: $amber-800;
+        }
+    }
+}

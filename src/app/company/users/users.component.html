@@ -1,0 +1,124 @@
+<section class="inbox content">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="header d-sm-flex d-block  justify-content-between">
+            <div class="d-flex justify-content-center align-items-center">
+              <h2><strong>Users</strong> table</h2>
+            </div>
+            <div class="">
+              <a routerLink="/company/log">
+                <span class="mr-3 btn btn-sm btn-primary btn-round  btn-simple"
+                  >All Logs</span
+                >
+              </a>
+              <a routerLink="/company/create-users">
+                <span class="mr-3 btn btn-sm btn-primary btn-round"
+                  >Create New</span
+                ></a
+              >
+            </div>
+          </div>
+          <div class="body">
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <div class="form-group float-right">
+                  <label>Search:</label>
+                  <input
+                    type="text"
+                    class="datatablesearch-style"
+                    (keyup)="updateFilter($event)"
+                  />
+                </div>
+              </div>
+            </div>
+            <ngx-datatable
+              style="border-radius: 10px"
+              #myFilterTable
+              class="bootstrap"
+              [rows]="rows"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="'auto'"
+              [limit]="10"
+              [scrollbarH]="true"
+              [sorts]="[{ prop: 'created_at', dir: 'desc' }]"
+            >
+              <ngx-datatable-column name="S.no." prop="id" [width]="75">
+                <ng-template
+                  let-rowIndex="rowIndex"
+                  ngx-datatable-cell-template
+                >
+                  {{ rowIndex + 1 }}
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Name" prop="name">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row.name }}
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Email" prop="email">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row.email }}
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Phone" prop="phone">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row.phone }}
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Created At" prop="created_at">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row.created_at }}
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Status" prop="status">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <span
+                    class="badge {{
+                      row.status == 0 ? 'badge-danger' : 'badge-success'
+                    }} "
+                    >{{ row.status == 0 ? "Inactive" : "Active" }}</span
+                  >
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column
+                name="Action"
+                [sortable]="false"
+                [width]="120"
+              >
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <a routerLink="/company/edit-users/{{ row.id }}">
+                    <i
+                      class="fa fa-pencil-square-o text-success icon-cursor-pointer"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                  <a routerLink="/company/log/{{ row.id }}">
+                    <i
+                      class="fa fa-file text-primary ml-2 icon-cursor-pointer"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                  <i
+                    (click)="deleteAllUserTable(row.id)"
+                    class="fa fa-trash text-danger ml-2 icon-cursor-pointer"
+                    aria-hidden="true"
+                  ></i>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

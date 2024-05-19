@@ -1,0 +1,56 @@
+<section class="content">
+  <div class="container">
+    <div class="row clearfix left-menu-view p-t-20">
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-4 overflowvisible set-view">
+          <ul class="nav navbar-nav top-icon">
+            <li class="dropdown app_menu hidden-sm">
+              <a class="dropdown-toggle" role="button" (click)="sidebar_hide()"
+                ><i class="icon-grid"></i
+              ></a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav">
+            <li class="dropdown profile" ngbDropdown>
+              <a
+                href="javascript:void(0);"
+                class="dropdown-toggle"
+                ngbDropdownToggle
+                role="button"
+              >
+                <img
+                  class="rounded-circle"
+                  src="assets/images/profile_av.jpg"
+                  alt="User"
+                />
+              </a>
+              <ul class="dropdown-menu" ngbDropdownMenu>
+                <li>
+                  <a routerLink="/admin/app/profile" style="cursor: pointer"
+                    ><i class="fa fa-user mr-2" aria-hidden="true"></i
+                    ><span>Profile</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    routerLink="/admin/app/change-password"
+                    style="cursor: pointer"
+                    ><i class="fa fa-inbox mr-2" aria-hidden="true"></i
+                    ><span>Change Password</span></a
+                  >
+                </li>
+                <li>
+                  <a (click)="logoutUserw()" style="cursor: pointer"
+                    ><i class="fa fa-sign-out mr-2" aria-hidden="true"></i
+                    ><span>Signout</span></a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

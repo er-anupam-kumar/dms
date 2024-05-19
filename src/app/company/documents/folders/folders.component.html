@@ -1,0 +1,209 @@
+<nav aria-label="breadcrumb" class="bgColorBreadCrumb mb-4 rounded">
+  <ol class="breadcrumb bg-transparent p-0 m-0">
+    <li class="breadcrumb-item">
+      <a routerLink="/company/documents">Home</a>
+    </li>
+    <li class="breadcrumb-item" *ngFor="let item of directory">
+      <a routerLink="/company/documents/folders/{{item.id}}">{{item.name}}</a>
+    </li>
+  </ol>
+</nav>
+<div class="row folder-row">
+  <div class="col-sm-12 header d-flex align-items-center justify-content-between flex-wrap">
+    <h6>Folders</h6>
+  </div>
+  <ng-container *ngIf="folders.length > 0">
+    <div class="col-xl-3 col-lg-4 col-md-12 mt-2" *ngFor="let folder of folders">
+      <div class="card hover" (contextmenu)="openMenu($event, folder.id, 'folder')" (click)="openFolder(folder.id)">
+        <div class="file">
+          <div class="customContextDiv" (click)="$event.stopPropagation()" *ngIf="folder.modify == 'Yes'">
+            <ul class="header-dropdown text-right">
+              <li class="dropdown mr-2" ngbDropdown>
+                <span class="dropdown-toggle customContexticon" ngbDropdownToggle role="button">
+                  <i class="zmdi zmdi-more-vert"></i>
+                </span>
+                <ul class="dropdown-menu customContextOption" ngbDropdownMenu>
+                  <li (click)="openFolder(folder.id)">Open</li>
+                  <li (click)="openModal(renameFolder, 'md', folder.id)">
+                    Rename folder
+                  </li>
+                  <li (click)="deleteFileOrFolder(folder.id, 'folder')" *ngIf="folder.deletable == 'Yes'">
+                    Delete
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <a href="javascript:void(0);">
+            <div class="hover" *ngIf="folder.modify == 'Yes' && folder.deletable == 'Yes'">
+              <button type="button" (click)=" deleteFileOrFolder(folder.id, 'folder'); $event.stopPropagation()"
+                class="btn btn-icon btn-icon-mini btn-round btn-danger">
+                <i class="zmdi zmdi-delete"></i>
+              </button>
+            </div>
+            <div class="icon">
+              <i class="zmdi zmdi-folder text-muted fs-100-px"></i>
+            </div>
+            <div class="text-center">
+              <p class="m-b-2 text-dark">{{ folder.name }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="folders.length == 0">
+    <div class="col-sm-12 mt-2">
+      <div class="card bg-white text-dark py-4 px-2">
+        <p class="mb-0">
+          <i class="material-icons mr-2 font-18">error</i>
+          This directory has no folders.
+        </p>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="row" *ngIf="infolder">
+  <div class="col-sm-12">
+    <h6>Files</h6>
+  </div>
+  <ng-container *ngIf="files.length > 0">
+    <div class="col-xl-3 col-lg-4 col-md-12 mt-2" *ngFor="let file of files">
+      <div class="card hover" (contextmenu)="openMenu($event, file.id, 'file')" (click)="openFile(file.id)">
+        <div class="file">
+          <div class="customContextDiv" (click)="$event.stopPropagation()">
+            <ul class="header-dropdown text-right">
+              <li class="dropdown mr-2" ngbDropdown>
+                <span class="dropdown-toggle customContexticon" ngbDropdownToggle role="button">
+                  <i class="zmdi zmdi-more-vert"></i>
+                </span>
+                <ul class="dropdown-menu customContextOption" ngbDropdownMenu>
+                  <li (click)="openFile(file.id)">Open</li>
+                  <li (click)="downLoadFile(file.id)">Download</li>
+                  <li (click)="favoriteAction(file.id, '1')" *ngIf="file.favourite == '0'">
+                    Add to favorite
+                  </li>
+                  <li (click)="favoriteAction(file.id, '0')" *ngIf="file.favourite == '1'">
+                    Remove from favorite
+                  </li>
+                  <li (click)="openModal(renameFile, 'md', file.id)" *ngIf="file.modify == 'Yes'">
+                    Rename file
+                  </li>
+                  <li (click)="deleteFileOrFolder(file.id, 'file')"
+                    *ngIf="file.modify == 'Yes' && file.deletable == 'Yes'">
+                    Delete
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <a href="javascript:void(0);">
+            <div class="hover" *ngIf="file.modify == 'Yes' && file.deletable == 'Yes'">
+              <button type="button" (click)="deleteFileOrFolder(file.id, 'file'); $event.stopPropagation()"
+                class="btn btn-icon btn-icon-mini btn-round btn-danger">
+                <i class="zmdi zmdi-delete"></i>
+              </button>
+            </div>
+            <div class="image" *ngIf="['jpg', 'jpeg', 'png', 'svg'].includes(file.type.toString().toLowerCase())">
+              <img src="{{ file.path }}" alt="img" class="img-fluid" />
+            </div>
+
+            <div class="icon" *ngIf="file.type.toString().toLowerCase() == 'pdf'">
+              <i class="zmdi zmdi-collection-pdf"></i>
+            </div>
+
+            <div class="icon" *ngIf="file.type.toString().toLowerCase() == 'txt'">
+              <i class="zmdi zmdi-file-text"></i>
+            </div>
+
+            <div class="icon"
+              *ngIf="['3gp', 'mp4', 'avi', 'mpeg4', 'mkv'].includes(file.type.toString().toLowerCase())">
+              <i class="zmdi zmdi-collection-video"></i>
+            </div>
+
+            <div class="icon"
+              *ngIf=" !['3gp', 'mp4', 'avi', 'mpeg4', 'mkv'].includes(file.type.toString().toLowerCase()) && !['jpg', 'jpeg', 'png', 'svg'].includes(file.type.toString().toLowerCase()) && file.type.toString().toLowerCase() != 'pdf' && file.type.toString().toLowerCase() != 'txt'">
+              <i class="zmdi zmdi-file"></i>
+            </div>
+            <div class="file-name">
+              <p class="m-b-5 text-dark">
+                {{ file.name.length > 18 ? file.name.slice(0, 18) + " ..." : file.name }}
+              </p>
+              <small>{{ file.size }}
+                <span class="date text-muted">{{file.created_at}}</span>
+              </small>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="filesBuffer.length > files.length">
+    <div class="col-sm-12 text-center">
+      <button class="btn btn-primary" (click)="paginateFiles()">Load more</button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="files.length == 0">
+    <div class="col-sm-12 mt-2">
+      <div class="card bg-white text-dark py-4 px-2">
+        <p class="mb-0">
+          <i class="material-icons mr-2 font-18">error</i> This directory has no
+          files.
+        </p>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #renameFile let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title mt-0">Rename File</h6>
+    <span class="float-right hover" (click)="modal.dismiss('Close click')">
+      <i class="zmdi zmdi-close"></i>
+    </span>
+  </div>
+  <form #renameFileForm="ngForm" ngNativeValidate (ngSubmit)="renameFiles(renameFileForm.value)">
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Rename File</label>
+          <input type="text" class="form-control" name="name" placeholder="Enter new name" maxlength="30" required
+            ngModel />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer theme-blush">
+      <button type="submit" class="btn btn-md btn-rounded btn-primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #renameFolder let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title mt-0">Rename Folder</h6>
+    <span class="float-right hover" (click)="modal.dismiss('Close click')">
+      <i class="zmdi zmdi-close"></i>
+    </span>
+  </div>
+  <form #renameFolderForm="ngForm" ngNativeValidate (ngSubmit)="renameFolders(renameFolderForm.value)">
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Rename Folder</label>
+          <input type="text" class="form-control" name="name" placeholder="Enter new name" maxlength="30" required
+            ngModel />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer theme-blush">
+      <button type="submit" class="btn btn-md btn-rounded btn-primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</ng-template>

@@ -1,0 +1,155 @@
+<div class="theme-blush light">
+  <div class="row m-0">
+    <div class="login-left col-lg-3 col-md-12">
+      <div class="card-body text-center">
+        <div class="brand-wrapper">
+          <h3>
+            <b>{{ title }}</b>
+          </h3>
+        </div>
+        <p class="h6 font-weight-normal">Sign into your account</p>
+        <form
+        #loginForm="ngForm"
+        (ngSubmit)="loginUserValue(loginForm.value)"
+        ngNativeValidate
+        >
+        <div class="form-group">
+          <label for="email" class="sr-only">Email</label>
+          <input
+          type="email"
+          name="email"
+          ngModel
+          id="email"
+          class="form-control"
+          placeholder="Email address"
+          required
+          />
+        </div>
+        <div class="form-group mb-4">
+          <label for="password" class="sr-only">Password</label>
+          <input
+          type="password"
+          name="password"
+          ngModel
+          id="password"
+          class="form-control"
+          placeholder="Password"
+          required
+          />
+        </div>
+        <button
+        class="btn btn-block btn-primary font-weight-bold mb-4"
+        type="submit"
+        value="Login"
+        [disabled]="buttonDisabled"
+        >
+        Login
+      </button>
+    </form>
+    <a
+    [routerLink]="['../forgot-password']"
+    class="forgot-password-link mb-2"
+    >Forgot password?</a
+    >
+  </div>
+</div>
+<div class="login-right col-lg-9 col-md-8 d-none d-lg-block p-0">
+  <div class="card-body login-right-background">
+
+    <div>
+      <h3 class="Feature-h2">P for Papers - P for Problems</h3>
+      <div class="row m-0">
+        <div class="login-rightSide-img col-md-2">
+          <img
+          src="https://images.pexels.com/photos/8872612/pexels-photo-8872612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt=""
+          width="200"
+          />
+        </div>
+        <div class="login-rightSide-list-col col-md-6">
+          <ul>
+            <li>Piles of Hard copies.</li>
+            <li>Document Backup</li>
+            <li>Occupies expensive Office Space.</li>
+            <li>
+              Fear of damage due to Fire, Short Circuit. Water
+              logging,Termites etc.
+            </li>
+            <li>Time waste to search hard copy</li>
+            <li>No Access in real time.</li>
+            <li>Unorganized Storage.</li>
+            <li>Deteriorate by the time</li>
+          </ul>
+        </div>
+        <div class="login-rightSide-icon-col col-md-4">
+          <div class="login-right-problems-i-box text-center">
+            <div class="login-right-problems-i">
+              <i
+              class="i-background-color fa fa-flag"
+              aria-hidden="true"
+              ></i>
+              <i
+              class="i-no-background-color fa fa-caret-right"
+              aria-hidden="true"
+              ></i>
+            </div>
+            <div class="login-brand">
+              <p>
+                <span>Digiker </span><br />
+                One Stop <br />
+                Solution
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-rich mt-4">
+        <div class="mb-4">
+          <span class="Feature-h2">Feature Rich</span>
+        </div>
+        <div class="row m-0">
+          <div class="feature-border text-center col-sm-4">
+            <i class="i-background fa fa-bullhorn" aria-hidden="true"></i>
+            <h6>Centralize Control</h6>
+            <p>
+              Central document library for easy retrieval.
+            </p>
+            <p>
+              Add, edit or delete folders on the fly to better organize the documents.
+            </p>
+            <p>
+              Intuitive user interface to, upload and tag.
+            </p>
+          </div>
+          <div class="feature-border text-center col-sm-4">
+            <i class="i-background fa fa-map-signs" aria-hidden="true"></i>
+            <h6>Search, Retrieval</h6>
+            <p>
+              With various search and retrieval options such as document
+              title and creator, etc.; document tag and full-text
+              indexing.
+            </p>
+
+            <p>
+              Real time search functionality to easily locate the document
+            </p>
+          </div>
+          <div class="col-sm-4 text-center">
+            <i class="i-background fa fa-flag" aria-hidden="true"></i>
+            <h6>Safe and secured documents</h6>
+            <p>Set access Permissions.</p>
+            <p>
+              Multiple level security departments or group.
+            </p>
+            <p>
+              Complete Audit trail with information such as Who /when
+              created, updated, shared, deleted etc.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,101 @@
+.icon,
+.image {
+  height: 380px;
+  text-align: center;
+}
+
+.image img {
+  max-height: 380px;
+}
+
+.info-card {
+  min-height: 420px;
+}
+
+.icon i {
+  position: absolute;
+  left: 45%;
+  top: 35%;
+}
+
+video,
+pdf-viewer,
+ngx-doc-viewer {
+  width: 100%;
+  height: 100%;
+}
+.attachment-icon {
+  font-size: 3rem;
+}
+
+// history
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  background-color: #ebebeb;
+  top: 0;
+  bottom: 0;
+  margin-left: -3px;
+}
+
+.container {
+  padding: 10px 20px;
+  position: relative;
+  background-color: inherit;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: -17px;
+  background-color: #e47297;
+  top: 22px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.left {
+  left: 0;
+}
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 10px;
+  border: medium solid #f9fbfd;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #f9fbfd transparent transparent;
+}
+
+.right::after {
+  left: -9px;
+}
+
+.content {
+  padding: 10px;
+  background-color: #f9fbfd;
+  position: relative;
+  border-radius: 6px;
+}
+.content p{
+  margin: 0;
+}

@@ -1,0 +1,98 @@
+<section class="content">
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <h2>
+          <strong>Checkout</strong>
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7 text-center" *ngIf="pay_type == 'invoice'">
+        <div class="card">
+          <div class="body">
+            <div>
+              <h3 class="">Invoice #{{ order_id }}</h3>
+            </div>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="text-left">S.no</td>
+                  <td class="text-left">Name</td>
+                  <td class="text-right">Price</td>
+                </tr>
+                <tr>
+                  <td class="text-left">1</td>
+                  <td class="text-left" *ngFor="let row of rows">
+                    {{ row.plan }}
+                  </td>
+                  <td class="text-right">{{ price }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 text-center" *ngIf="pay_type != 'invoice'">
+        <div class="card">
+          <div class="body">
+            <div class="iconBox">
+              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h3 class="">{{ name }}</h3>
+            </div>
+            <div class="mb-3">
+              <span class="newline-content">{{ description }}</span>
+            </div>
+            <div>
+              <h3>
+                <span>₹{{ price }}</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Payment Info</strong>
+            </h2>
+          </div>
+          <div class="body">
+            <div class="table-responsive">
+              <table class="table">
+                <tr>
+                  <td>Subtotal</td>
+                  <td class="text-right">{{ price }}</td>
+                </tr>
+                <tr>
+                  <td>tax</td>
+                  <td class="text-right">0</td>
+                </tr>
+                <tr>
+                  <td>Total Charge</td>
+                  <td class="text-right">
+                    <strong>₹ {{ price }}</strong>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn btn-warning btn-round" routerLink="/company">Cancel</button>
+                <button
+                  class="btn btn-primary btn-round float-right"
+                  (click)="payNow()"
+                >
+                  Pay Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

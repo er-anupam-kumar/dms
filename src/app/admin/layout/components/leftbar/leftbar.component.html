@@ -1,0 +1,308 @@
+<aside id="leftsidebar" class="sidebar {{ hmenu }}">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-12">
+        <div class="menu">
+          <div class="navbar-logo">
+            <a class="navbar-brand" [routerLink]="['dashboard']">
+              <p class="header-title-name">
+                <b>{{ title }}</b>
+              </p>
+            </a>
+          </div>
+          <ul class="list mb-0">
+            <li
+              *ngIf="this.viewArray.includes('Dashboard')"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'dashboard' }"
+            >
+              <a
+                href="javascript:void(0);"
+                [ngClass]="{ toggled: currentActiveNav == 'dashboard' }"
+                (click)="changeNavTab('dashboard')"
+                [routerLink]="['dashboard']"
+              >
+                <i class="icon-speedometer"></i><span>Dashboard</span>
+              </a>
+            </li>
+            <li
+              *ngIf="
+                this.viewArray.includes('Registrations') ||
+                this.modifyArray.includes('Registrations')
+              "
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'app' }"
+            >
+              <a
+                href="javascript:void(0);"
+                class="menu-toggle"
+                [ngClass]="{ toggled: currentActiveNav == 'app' }"
+                (click)="changeNavTab('app')"
+              >
+                <i class="icon-grid"></i><span>Registration</span>
+              </a>
+              <ul
+                class="ml-menu"
+                [ngClass]="{
+                  'd-none': currentActiveNav != 'app',
+                  'd-block': currentActiveNav == 'app'
+                }"
+              >
+                <li
+                  *ngIf="this.modifyArray.includes('Registrations')"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                >
+                  <a [routerLink]="['app/create-registration']"
+                    >Create Registration</a
+                  >
+                </li>
+                <li
+                  *ngIf="this.viewArray.includes('Registrations')"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                >
+                  <a [routerLink]="['app/all-registration']"
+                    >All Registration</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li
+              *ngIf="
+                this.viewArray.includes('Plans') ||
+                this.modifyArray.includes('Plans')
+              "
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'component' }"
+            >
+              <a
+                href="javascript:void(0);"
+                class="menu-toggle"
+                [ngClass]="{ toggled: currentActiveNav == 'component' }"
+                (click)="changeNavTab('component')"
+              >
+                <i class="icon-folder"></i><span>Plans</span>
+              </a>
+              <ul
+                class="ml-menu"
+                [ngClass]="{
+                  'd-none': currentActiveNav != 'component',
+                  'd-block': currentActiveNav == 'component'
+                }"
+              >
+                <li
+                  *ngIf="this.modifyArray.includes('Plans')"
+                  class="second-level"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  [ngClass]="{ open: currentActiveMenu == 'ui-elements' }"
+                >
+                  <a
+                    href="javascript:void(0);"
+                    class="menu-toggle"
+                    [routerLink]="['app/create-plans']"
+                    [ngClass]="{
+                      toggled: currentSubActiveNav == 'ui-elements'
+                    }"
+                    (click)="changesubNavTab('ui-elements')"
+                    >Create Plan</a
+                  >
+                </li>
+                <li
+                  *ngIf="this.viewArray.includes('Plans')"
+                  class="second-level"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  [ngClass]="{ open: currentActiveMenu == 'form' }"
+                >
+                  <a
+                    href="javascript:void(0);"
+                    class="menu-toggle"
+                    [ngClass]="{ toggled: currentSubActiveNav == 'form' }"
+                    (click)="changesubNavTab('form')"
+                    [routerLink]="['app/all-plans']"
+                  >
+                    All Plans
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li
+              *ngIf="
+                this.viewArray.includes('Addons') ||
+                this.modifyArray.includes('Addons')
+              "
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'widgets' }"
+            >
+              <a
+                href="javascript:void(0);"
+                class="menu-toggle"
+                [ngClass]="{ toggled: currentActiveNav == 'widgets' }"
+                (click)="changeNavTab('widgets')"
+              >
+                <i class="icon-puzzle"></i><span>Add ons</span>
+              </a>
+              <ul
+                class="ml-menu"
+                [ngClass]="{
+                  'd-none': currentActiveNav != 'widgets',
+                  'd-block': currentActiveNav == 'widgets'
+                }"
+              >
+                <li
+                  *ngIf="this.modifyArray.includes('Addons')"
+                  [routerLinkActive]="'active'"
+                >
+                  <a [routerLink]="['app/create-add-ons']"> Create Addon</a>
+                </li>
+                <li
+                  *ngIf="this.viewArray.includes('Addons')"
+                  [routerLinkActive]="'active'"
+                >
+                  <a [routerLink]="['app/all-add-ons']"> All Addons</a>
+                </li>
+              </ul>
+            </li>
+            <li
+              *ngIf="
+                this.viewArray.includes('Users') ||
+                this.modifyArray.includes('Users')
+              "
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'pages' }"
+            >
+              <a
+                href="javascript:void(0);"
+                class="menu-toggle"
+                [ngClass]="{ toggled: currentActiveNav == 'pages' }"
+                (click)="changeNavTab('pages')"
+              >
+                <i class="icon-users"></i><span>Users</span>
+              </a>
+              <ul
+                class="ml-menu"
+                [ngClass]="{
+                  'd-none': currentActiveNav != 'pages',
+                  'd-block': currentActiveNav == 'pages'
+                }"
+              >
+                <li
+                  *ngIf="this.modifyArray.includes('Users')"
+                  class="sm_menu_btm second-level"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  [ngClass]="{ open: currentSubActiveNav == 'authentication' }"
+                >
+                  <a
+                    href="javascript:void(0);"
+                    class="menu-toggle"
+                    [ngClass]="{
+                      toggled: currentSubActiveNav == 'authentication'
+                    }"
+                    (click)="changesubNavTab('authentication')"
+                    [routerLink]="['app/create-users']"
+                  >
+                    Create User
+                  </a>
+                </li>
+                <li
+                  *ngIf="this.viewArray.includes('Users')"
+                  class="sm_menu_btm second-level"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  [ngClass]="{ open: currentSubActiveNav == 'sample-pages' }"
+                >
+                  <a
+                    href="javascript:void(0);"
+                    class="menu-toggle"
+                    [routerLink]="['app/all-users']"
+                    [ngClass]="{
+                      toggled: currentSubActiveNav == 'sample-pages'
+                    }"
+                    (click)="changesubNavTab('sample-pages')"
+                  >
+                    All Users
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li
+              *ngIf="
+                this.viewArray.includes('Invoices') ||
+                this.modifyArray.includes('Invoices')
+              "
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'maps' }"
+            >
+              <a
+                href="javascript:void(0);"
+                [ngClass]="{ toggled: currentActiveNav == 'maps' }"
+                (click)="changeNavTab('maps')"
+                [routerLink]="['app/invoices']"
+              >
+                <i class="icon-map"></i><span>Invoices</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['app/profile']">
+                <i class="icon-user"></i><span>Profile</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12">
+        <ul class="nav navbar-nav top-icon">
+          <li class="dropdown app_menu hidden-sm" ngbDropdown>
+            <a
+              href="javascript:void(0);"
+              class="dropdown-toggle"
+              ngbDropdownToggle
+              ><i class="icon-grid"></i
+            ></a>
+            <ul class="dropdown-menu" ngbDropdownMenu>
+              <li>
+                <a [routerLink]="['dashboard']"
+                  ><i class="icon-speedometer"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['app/contact']"
+                  ><i class="fa fa-id-card"></i><span>Registration</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['app/app-chat']"
+                  ><i class="fa fa-comments"></i><span>Plans</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['sample-pages/team-board']"
+                  ><i class="fa fa-users"></i><span>Add ons</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['sample-pages/projects-list']"
+                  ><i class="fa fa-list-alt"></i><span>Users</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['app/app-calendar']"
+                  ><i class="fa fa-calendar"></i><span>Invoices</span></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>

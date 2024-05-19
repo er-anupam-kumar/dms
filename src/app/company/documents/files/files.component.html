@@ -1,0 +1,414 @@
+<nav aria-label="breadcrumb" class="bgColorBreadCrumb mb-4 rounded">
+  <ol class="breadcrumb bg-transparent p-0 m-0">
+    <li class="breadcrumb-item">
+      <a routerLink="/company/documents">Home</a>
+    </li>
+    <li class="breadcrumb-item" *ngFor="let item of directory">
+      <a routerLink="/company/documents/folders/{{item.id}}">{{item.name}}</a>
+    </li>
+    <li class="breadcrumb-item">{{ name }}</li>
+  </ol>
+</nav>
+<div class="row clearfix mb-5" >
+  <div class="col-lg-8 col-md-12">
+    <div class="card single_post">
+      <div class="body">
+        <div class="img-post">
+          <a href="{{ path }}" download target="_blank">
+            <div
+              class="image"
+              *ngIf="
+                ['jpg', 'jpeg', 'png', 'svg'].includes(
+                  type.toString().toLowerCase()
+                )
+              "
+            >
+              <img src="{{ path }}" alt="img" class="img-fluid" />
+            </div>
+            <div class="icon" *ngIf="type.toString().toLowerCase() == 'pdf'">
+              <pdf-viewer
+                [src]="path"
+                [render-text]="true"
+                [original-size]="false"
+                [autoresize]="true"
+              ></pdf-viewer>
+            </div>
+            <div class="icon" *ngIf="type.toString().toLowerCase() == 'txt'">
+              <i class="fs-100-px zmdi zmdi-file-text"></i>
+            </div>
+            <div
+              class="icon"
+              *ngIf="
+                ['3gp', 'mp4', 'avi', 'mpeg4', 'mkv'].includes(
+                  type.toString().toLowerCase()
+                )
+              "
+            >
+              <video controls>
+                <source src="{{ path }}" type="video/mp4" />
+              </video>
+            </div>
+            <div
+              class="icon"
+              *ngIf="
+                !['3gp', 'mp4', 'avi', 'mpeg4', 'mkv'].includes(
+                  type.toString().toLowerCase()
+                ) &&
+                !['jpg', 'jpeg', 'png', 'svg'].includes(
+                  type.toString().toLowerCase()
+                ) &&
+                type.toString().toLowerCase() != 'pdf' &&
+                type.toString().toLowerCase() != 'txt'
+              "
+            >
+              <i class="fs-100-px zmdi zmdi-file"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card post-comment-card" *ngIf="modify == 'Yes'">
+      <div class="header">
+        <h2><strong>Write</strong> comment</h2>
+      </div>
+      <div class="body">
+        <div class="comment-form">
+          <form
+            class="row clearfix"
+            #postCommentForm="ngForm"
+            ngNativeValidate
+            (ngSubmit)="postComment(postCommentForm.value)"
+          >
+            <div class="col-sm-12">
+              <div class="form-group">
+                <textarea
+                  rows="2"
+                  id="comment_area"
+                  class="form-control no-resize"
+                  placeholder="Please type what you want..."
+                  type="text"
+                  class="form-control"
+                  name="comment"
+                  ngModel
+                  minlength="5"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                [disabled]="buttonDisabled"
+                class="btn btn-block btn-primary btn-round"
+              >
+                SUBMIT
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-lg-12 col-md-12">
+    <div class="card info-card">
+      <div class="header">
+        <h2><strong>File</strong> info</h2>
+        <ul class="header-dropdown text-right">
+          <li class="dropdown mr-2" ngbDropdown>
+            <span class="dropdown-toggle" ngbDropdownToggle role="button">
+              <i class="zmdi zmdi-more"></i>
+            </span>
+            <ul class="dropdown-menu customContextOption" ngbDropdownMenu>
+              <a href="{{ path }}" target="_blank">
+                <li>Preview</li>
+              </a>
+              <a>
+                <li
+                  (click)="favoriteAction(file_id, '1')"
+                  *ngIf="dataFavourite == '0'"
+                >
+                  Add to favorite
+                </li>
+              </a>
+              <a>
+                <li
+                  (click)="favoriteAction(file_id, '0')"
+                  *ngIf="dataFavourite == '1'"
+                >
+                  Remove from favorite
+                </li>
+              </a>
+              <a>
+                <li
+                  (click)="openModal(shareFile, 'md')"
+                  *ngIf="modify == 'Yes'"
+                >
+                  Share file
+                </li>
+              </a>
+              <a>
+                <li (click)="downLoadFile()">Download</li>
+              </a>
+              <a>
+                <li
+                  (click)="openModal(renameFile, 'md')"
+                  *ngIf="modify == 'Yes'"
+                >
+                  Rename file
+                </li>
+              </a>
+              <a *ngIf="modify == 'Yes' && deletable == 'Yes'">
+                <li
+                  (click)="deleteFile(file_id, 'file')"
+                  class="border-bottom-0"
+                >
+                  Delete
+                </li>
+              </a>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="body">
+        <ul class="follow_us list-unstyled mb-0">
+          <li class="online">
+            <a href="javascript:void(0);">
+              <div class="media mb-0">
+                <div class="media-body">
+                  <span class="name">File Name</span>
+                  <span class="message"> {{ name }}</span>
+
+                  <span class="name">Kind</span>
+                  <span class="message">{{ type }}</span>
+
+                  <span class="name">Size</span>
+                  <span class="message"
+                    >{{ size == null ? " 0 KB " : size }}
+                  </span>
+
+                  <span class="name">Location</span>
+                  <span class="message">
+                    <a
+                      class="text-muted"
+                      routerLink="/company/documents/folders/{{ folder_id }}"
+                    >
+                      {{ where }}
+                    </a>
+                  </span>
+
+                  <span class="name">Created By</span>
+                  <span class="message"> {{ created_by }}</span>
+
+                  <span class="name">Created On</span>
+                  <span class="message"> {{ created_at }}</span>
+
+                  <span class="name">Modified On</span>
+                  <span class="message"> {{ updated_at }}</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card tag-card" *ngIf="modify == 'Yes'">
+      <div class="header">
+        <h2><strong>Tags</strong></h2>
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                maxlength="20"
+                placeholder="Enter tag"
+                (keyup)="tagsEnter($event)"
+                [(ngModel)]="this.tagsInput"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary m-0 px-3"
+                  (click)="addTags()"
+                  type="button"
+                >
+                  <i class="material-icons fs-13-px">check</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="follow_us list-unstyled mb-0">
+          <li class="online" *ngFor="let tag of tags">
+            <span class="badge badge-primary fs-13-px">
+              <span>
+                {{ tag }}
+              </span>
+              <span class="float-right">
+                <a href="javascript:void(0);" (click)="removeTags(tag)">
+                  <i class="material-icons text-white fs-13-px">close</i>
+                </a>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="header">
+        <h2><strong>Past</strong> comments</h2>
+      </div>
+
+      <div class="body">
+        <div *ngIf="comment?.length > 0; else no_comment">
+          <ul class="follow_us list-unstyled mb-0" *ngFor="let data of comment">
+            <li class="online">
+              <a href="javascript:void(0);">
+                <div class="media mb-2">
+                  <i class="fa fa-user-circle text-muted fs-30-px mr-3"></i>
+                  <div class="media-body">
+                    <h5 class="name">{{ data.commented_by }}</h5>
+                    <span class="newline-content">{{ data.comment }}</span>
+                    <ul class="list-inline d-flex">
+                      <li>
+                        <a href="javascript:void(0);">{{ data.created_at }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <ng-template #no_comment>
+          <span>No comments found.</span>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="card" id="history" *ngIf="history">
+      <div class="header">
+        <h2><strong>Approval </strong> History</h2>
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="vinaygggg">
+              <div class="timeline" *ngFor="let item of history">
+                <div class="container right">
+                  <div class="content">
+                    <p class="newline-content">{{ item }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #renameFile let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title mt-0">Rename File</h6>
+    <span class="float-right hover" (click)="modal.dismiss('Close click')">
+      <i class="zmdi zmdi-close"></i>
+    </span>
+  </div>
+  <form
+    #renameFileForm="ngForm"
+    ngNativeValidate
+    (ngSubmit)="renameFiles(renameFileForm.value)"
+  >
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Rename File</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="Enter new name"
+            maxlength="30"
+            required
+            ngModel
+          />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer theme-blush">
+      <button type="submit" class="btn btn-md btn-rounded btn-primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #shareFile let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title mt-0">Share File</h6>
+    <span class="float-right hover" (click)="modal.dismiss('Close click')">
+      <i class="zmdi zmdi-close"></i>
+    </span>
+  </div>
+  <form
+    #shareFileForm="ngForm"
+    ngNativeValidate
+    (ngSubmit)="shareFilesAttachment(shareFileForm.value)"
+  >
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>To:</label>
+          <input
+            type="email"
+            class="form-control"
+            name="to"
+            placeholder="Enter mail address"
+            maxlength="50"
+            required
+            ngModel
+          />
+        </div>
+        <div class="form-group col-md-12">
+          <label>Email Body:</label>
+          <textarea
+            class="form-control"
+            name="body"
+            rows="4"
+            placeholder="Write here ..."
+            ngModel
+          ></textarea>
+        </div>
+        <div class="form-group col-md-12 mt-2">
+          <label>Attachment:</label>
+          <div class="online">
+            <div class="media hover">
+              <i
+                class="fa fa-file attachment-icon text-primary mt-1 mr-2"
+                aria-hidden="true"
+              ></i>
+              <div class="media-body">
+                <span class="version-name text-muted">{{ name }}</span>
+                <ul class="list-inline d-flex">
+                  <li>
+                    <span class="message mr-4 text-muted">
+                      Size: {{ size == null ? " 0 KB " : size }}
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer theme-blush">
+      <button type="submit" class="btn btn-md btn-rounded btn-primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</ng-template>

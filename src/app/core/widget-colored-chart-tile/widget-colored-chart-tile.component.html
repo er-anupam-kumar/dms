@@ -1,0 +1,7 @@
+<div class="card {{background}}">
+    <div class="body text-white">
+        <h4 class="m-t-0 m-b-0">{{value | number}}</h4>
+        <p class="m-b-0">{{title}}</p>
+        <div echarts [options]="chartOptions" class="echart-line-chart-area" [autoResize]="true"></div>
+    </div>
+</div>

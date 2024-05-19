@@ -1,0 +1,35 @@
+<div class="{{themeClass}} {{menuClass}} {{rtlClass}} {{themeDarkClass}}  {{smallDeviceMenu}} {{lsclosed}}">
+  <!-- Page Loader -->
+  <!-- <div class="page-loader-wrapper" *ngIf="showLoader">
+      <div class="loader">
+          <div class="m-t-30"><img class="zmdi-hc-spin" src="assets/images/logo.svg" width="48" height="48"
+                  alt="Riverra"></div>
+          <p>Please wait...</p>
+      </div>
+  </div> -->
+
+  <!-- Right Sidebar Overlay -->
+  <div class="overlay" [style.display]="rightOverlayDisplay" (click)="hideRightPanel()"></div>
+
+  <!-- Page Header -->
+  <app-header></app-header>
+
+  <!-- Left Sidebar -->
+  <app-leftbar [currentActiveMenu]="currentActiveMenu" [currentActiveSubMenu]="currentActiveSubMenu" *ngIf="menuClass != 'index2'"></app-leftbar>
+
+  <!-- Right Sidebar -->
+  <app-rightbar></app-rightbar>
+
+  <section class="home">
+      <router-outlet (activate)="getActiveRoutes()">
+        <app-top-menu></app-top-menu>
+      </router-outlet>
+
+      <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+        <button class="btn btn-primary" (click)="scrollToTop()">
+            <i class="fa fa-chevron-up"></i>
+        </button>
+      </div>
+  </section>
+
+</div>

@@ -1,0 +1,109 @@
+<section class="inbox content">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-lg-12">
+        <div class="tab-content">
+          <div
+            role="tabpanel"
+            class="tab-pane in active"
+            id="details"
+            aria-expanded="true"
+          >
+            <div class="card" id="details">
+              <div class="header">
+                <h2><strong>Invoice Details :</strong> #{{ invoiceid }}</h2>
+              </div>
+              <div class="body">
+                <div class="row clearfix">
+                  <div class="col-md-6 col-sm-6">
+                    <address>
+                      <strong>{{ company.name }}</strong>
+                      <p *ngIf="company.address" class="mb-0">
+                        {{ company.address }}
+                      </p>
+                      <p *ngIf="company.city" class="mb-0">
+                        {{ company.city }}, {{ company.state }},
+                        {{ company.country }}
+                      </p>
+                      <p *ngIf="company.phone">
+                        {{ company.phone }}, {{ company.email }}
+                      </p>
+                      <br />
+                    </address>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right">
+                    <p class="mb-0">
+                      <strong>Order Date: </strong> {{ order_date }}
+                    </p>
+                    <p class="mb-0">
+                      <strong>Order Status: </strong>
+                      <span
+                        class="mb-0 badge {{
+                          status == 0 ? 'badge-danger' : 'badge-success'
+                        }} "
+                      >
+                        {{ status == 0 ? "Pending" : "Success" }}</span
+                      >
+                    </p>
+                    <p><strong>Payment ID: </strong> #{{ payment_id }}</p>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-md-12">
+                   <div class="table-responsive social_media_table"></div>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>S.no</th>
+                          <th>Name</th>
+                          <th>Type</th>
+                          <th>Quantity</th>
+                          <th>Price</th>
+                          <th class="text-right">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let data of rows; let i = index">
+                        <tr>
+                          <td>{{ i + 1 }}</td>
+                          <td>{{ data.plan }}</td>
+                          <td>
+                            {{ data.type == '0' ? "Plan" : "Addon" }}
+                          </td>
+                          <td>1</td>
+                          <td>{{ data.price }}</td>
+                          <td class="text-right">{{ data.price }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <hr />
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-md-6"></div>
+                  <div class="col-md-6 text-right">
+                    <p class="mb-0">
+                      <b>Sub-total:</b>
+                      {{subtotal.toFixed(2)}}
+                    </p>
+                    <p class="mb-0" *ngIf="igst == 0">SGST ( {{sgst}} %): {{ ((subtotal*sgst)/100).toFixed(2) }}</p>
+                    <p class="mb-0" *ngIf="igst == 0">CGST ( {{cgst}} %): {{ ((subtotal*cgst)/100).toFixed(2) }}</p>
+                    <p class="mb-0" *ngIf="igst != 0">IGST ( {{igst}} %): {{ ((subtotal*igst)/100).toFixed(2) }}</p>
+                    <p class="mb-0">
+                      <b>Tax: </b>
+                      {{ (amount-subtotal).toFixed(2) }}
+                    </p>
+                    <h4 class="mb-0 mt-2">₹ {{ amount.toFixed(2) }}</h4>
+                  </div>
+                  <div class="hidden-print col-md-12 text-right">
+                    <hr />
+                    <button class="btn btn-warning">Create PDF</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,115 @@
+.light {
+	--dark-color: 		#323A45;
+
+	--color-fff:		#ffffff;
+	--color-100:		#F0F0F0;
+	--color-200:		#EEEEEE;
+	--color-300:		#E0E0E0;
+	--color-400:		#BDBDBD;
+	--color-500:		#555555;
+	--color-600:		#757575;
+	--color-700:		#616161;
+	--color-800:		#424242;
+	--color-900:		#212121;
+	--color-000:		#000000;
+
+	--border-color:		#ebebeb;
+	--card-color: 		#ffffff;
+	--body-color: 		#f9fbfd;
+	--white-color: 		#ffffff;
+	--sidebar-color:	#fcfcfc;
+    --interchange:      #000;
+
+	--hc-font-color:	#555555;
+    --hc-bg-color:		#f0f0f0;
+
+}
+.dark {
+	--dark-color: 		#323A45;
+
+	--color-fff:		#000000;
+	--color-100:		#212121;
+	--color-200:		#424242;
+	--color-300:		#616161;
+	--color-400:		#757575;
+	--color-500:		#8f8f8f;
+	--color-600:		#BDBDBD;
+	--color-700:		#E0E0E0;
+	--color-800:		#EEEEEE;
+	--color-900:		#F0F0F0;
+	--color-000:		#FFFFFF;
+
+	--border-color:		#353535;
+	--card-color: 		#262727;
+	--body-color: 		#1e1f20;
+	--white-color: 		#ffffff;
+    --sidebar-color:	#fcfcfc;
+    --interchange:      #fff;
+
+	--hc-font-color:	#555555;
+    --hc-bg-color:		#f0f0f0;
+}
+
+[class="theme-blush"] {
+	--primary-color: 	#e47297;
+	--secondary-color: 	#f1ff17;
+
+	--primary-gradient: linear-gradient(45deg, #009abd, #00bdaa);
+}
+
+//Colors
+$colors:(
+    red: #ec3b57,
+    pink: #E91E63,
+    purple: #a27ce6,
+    deep-purple: #673AB7,
+    blue: #60bafd,
+    cyan: #49c5b6,
+    green: #50d38a,
+    light-green: #8BC34A,
+    yellow: #ffe821,
+    orange: #ffc323,
+    deep-orange: #f83600,
+    grey: #9E9E9E,
+    blue-grey: #607D8B,
+    indigo: #3F51B5,
+    light-blue: #03A9F4,
+    teal: #009688,
+    lime: #CDDC39,
+    amber: #FFC107,
+    brown: #795548,
+    blush: #ff758e,
+    black: #000000,
+    white: #ffffff ) !default;
+
+//Fonts Family
+$navbar-font-family: 'Poppins', sans-serif;
+$sidebar-font-family: 'Poppins', sans-serif;
+
+// Custom colors
+$color-red: #B54D4D;
+$col-red: #ee2558;
+$col-blue: #1d8ecd;
+$col-orange: #f5a81d;
+$col-green: #86c541;
+$col-dark: #17191c;
+$col-white: #ffffff;
+
+// Bootstrap colors
+$color-primary: #49c5b6;
+$color-accent: #5c8ed4;
+$color-info: #3C89DA;
+$color-success: #22af46;
+$color-warning: #f3ad06;
+$color-danger: #de4848;
+$color-muted: #9A9A9A;
+$color-default-dark: #acb5c1;
+
+// Fonts
+$font-family: 'Ubuntu', sans-serif;
+$font-size: 14px;
+$font-color: #5A5A5A;
+$link-color: #6290d0;
+$link-color-hover: darken($link-color, 8%);
+$line-color: #e8e8e8;
+$dark-line-color: #1f2125;

@@ -1,0 +1,421 @@
+﻿<!doctype html>
+<html class="no-js " lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+<title>:: Riverra Bootstrap4 Admin ::</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+<!-- Custom Css -->
+<style>
+    #features li,
+    #documenter_cover li,
+    #template li{ padding: 5px 0;}
+    .sidebar .menu .list a span{margin: 0 !important;}
+    .main_features{list-style:disc;padding-left: 15px;}
+    .main_features li.divider {
+        border-bottom: 1px solid #ececec;
+        margin: 10px 0;
+        list-style: none;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 1;
+        color: #ff0000;
+        padding-top: 15px;
+    }
+    .slim_scroll,.slimScrollDiv{
+      height: calc(100vh - 0px) !important;
+      padding-top: 0px !important;
+    }
+    .navbar-nav .search_bar input[type=search]{
+      background: url(assets/images/search-icon-white.png) no-repeat 9px center !important;
+    }
+</style>
+<!-- VENDOR CSS -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/color_skins.css">
+</head>
+<body class="theme-blush light left-menu">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><img  src="assets/images/logo-white.svg" width="48" height="48" alt="Riverra"></div>
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<!-- Top Bar -->
+<nav class="top_navbar">
+  <div class="container">
+      <div class="row clearfix">
+          <div class="col-12">
+              <div class="navbar-logo">
+                  <a href="javascript:void(0);" class="bars"></a>
+                  <a class="navbar-brand" href="index.html"><img src="assets/images/logo.svg" width="100"
+                          alt="Riverra"></a>
+              </div>
+              <ul class="nav navbar-nav">
+                  <li class="search_bar hidden-xs">
+                      <form>
+                          <input type="search" placeholder="Search">
+                      </form>
+                  </li>
+                  <li class="dropdown profile">
+                      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                          <img class="rounded-circle" src="assets/images/profile_av.jpg" alt="User">
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a href="javascript:void(0);"><i class="fa fa-user mr-2" aria-hidden="true"></i><span>My Profile</span></a></li>
+                          <li><a href="javascript:void(0);"><i class="fa fa-inbox mr-2" aria-hidden="true"></i><span>Inbox</span></a></li>
+                          <li><a href="javascript:void(0);"><i class="fa fa-lock mr-2" aria-hidden="true"></i><span>Locked</span></a></li>
+                          <li><a href="javascript:void(0);"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i><span>Signout</span></a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</nav>
+
+<aside id="leftsidebar" class="sidebar h_menu">
+    <div class="container">
+      <div class="row clearfix hide-data">
+        <div class="col-lg-12">
+            <div class="card mb-0">
+                <div class="body block-header">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8 col-sm-12">
+                            <h2><a href="index.html"></a> Welcome to Riverra</h2>
+                            <ul class="breadcrumb p-l-0 p-b-0 ">
+                                <li class="breadcrumb-item active dateview" id="dateview">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-4 col-sm-12 text-right">
+                            <div class="d-flex justify-content-end top-info">
+                                <a href="#" class="btn btn-link">
+                                    <div class="top-deatil">
+                                        <i class="icon-user"></i><span>37k</span>
+                                    </div>
+                                    <span>New User</span>
+                                </a>
+                                <a href="#" class="btn btn-link">
+                                    <div class="top-deatil">
+                                        <i class="icon-calculator"></i><span>42</span>
+                                    </div>
+                                    <span>Invoices</span>
+                                </a>
+                                <a href="#" class="btn btn-link mr-0">
+                                    <div class="top-deatil">
+                                        <i class="icon-calendar"></i><span>150</span>
+                                    </div>
+                                    <span>Schedule</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+            <div class="col-12">
+                <div class="menu">
+                    <div class="navbar-logo">
+                        <a class="navbar-brand" href="index.html"><img src="assets/images/logo.svg" width="100" alt="Riverra"></a>
+                    </div>
+                    <ul class="list">
+                        <li class="active open"><a href="#documenter_cover"><span>Start </span></a></li>
+                        <li><a href="#overview"><span>Overview</span></a></li>
+                        <li><a href="#server_requirements"><span>Server Requirements</span></a></li>
+                        <li><a href="#installation"><span>Angular Installation</span></a></li>
+                        <li><a href="#grunt_file"><span>Grunt File</span></a></li>
+                        <li><a href="#folder_structure"><span>Folder Structure</span></a></li>
+                        <li><a href="#css"><span>Sass</span></a></li>
+                        <li><a href="#fonts"><span>Fonts</span></a></li>
+                        <li><a href="#thank_you"><span>THANK YOU!</span></a></li>
+                    </ul>
+                </div>
+            </div>
+      </div>
+    </div>
+</aside>
+
+<!-- main content -->
+<section class="content home">
+	<div class="container">
+    <div class="row clearfix">
+      <div class="col-sm-12 ">
+        <div class="card" id="documenter_cover">
+          <div class="header">
+            <h2><strong>Start</strong> Riverra</h2>
+          </div>
+          <div class="body">
+            <h3 >Riverra - Angular</h3>
+              <ul>
+                  <li>Created:  17-Oct-2020</li>
+                  <li>latest update:  17-Dec-2020</li>
+              </ul>
+              <p >Thank you for purchasing our template. If you have any questions that are beyond the scope of this help file, please feel free to email at info@thememakker.com</p>
+              </p>
+              <p>If you really like our work, design, performance and support then <a href="https://themeforest.net/downloads"> please don't forgot to rate us</a> on Themeforest,<br>
+              it really motivate us to provide something better.
+                  <span>
+                      <i class="zmdi zmdi-star text-warning m-r-5"></i>
+                      <i class="zmdi zmdi-star text-warning m-r-5"></i>
+                      <i class="zmdi zmdi-star text-warning m-r-5"></i>
+                      <i class="zmdi zmdi-star text-warning m-r-5"></i>
+                      <i class="zmdi zmdi-star text-warning"></i>
+                  </span>
+              </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-sm-12 ">
+        <div class="card" id="overview">
+          <div class="header">
+            <h2><strong>Brief</strong> Overview</h2>
+          </div>
+          <div class="body">
+            <p>Riverra is a popular open source WebApp template for admin dashboards and admin panels. It’s responsive HTML template, which is based on the Bootstrap 4X framework. It utilizes all of the Bootstrap components in design and re-styles many commonly used plugins to create a consistent design that can be used as a user interface for backend applications.</p>
+                        <p class="m-b-20">Riverra is based on a modular design, which allows it to be easily customised and built upon any backend project in no-time. Our documentation will guide you through installing the template and exploring the various components that are bundled with the template.</p>
+                        <div class="row">
+                            <div class="col-lg-4  text-center">
+                                <i class="fa fa-flag fa-2x"></i>
+                                <h6 class="m-t-20">ANGULAR 9</h6>
+                                <p class="text-muted">Angular is a platform that makes it easy to build applications with the web. Angular combines declarative templates, dependency injection, end to end tooling, and integrated best practices to solve development challenges. Angular empowers developers to build applications that live on the web, mobile, or the desktop.</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <i class="zmdi zmdi-favorite zmdi-hc-2x col-deep-purple"></i>
+                                <h6 class="m-t-20 col-deep-purple">Bootstrap 4x Framework</h6>
+                                <p class="text-muted">Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+                            </div>
+
+                            <div class="col-md-4 text-center">
+                                <i class="zmdi zmdi-settings zmdi-hc-2x col-green"></i>
+                                <h6 class="m-t-20 col-green">Easily Customizable</h6>
+                                <p class="text-muted">The internet is society’s true equalizer. It gives voices to the masses, as people from across the world can now express their opinions and ideals. Not since the industrial revolution, has humanity experienced such a game-changing invention.</p>
+                            </div>
+                        </div>
+                        <div class="row m-t-30">
+                          <div class="col-md-4 text-center">
+                            <i class="zmdi zmdi-language-html5 zmdi-hc-2x col-deep-orange"></i>
+                            <h6 class="m-t-20 col-deep-orange">HTML5/CSS3</h6>
+                            <p class="text-muted">HTML5 is a core technology markup language of the Internet used for structuring and presenting content for the World Wide Web.</p>
+                          </div>
+                            <div class="col-md-4 text-center">
+                                <i class="zmdi zmdi-input-power zmdi-hc-2x col-amber"></i>
+                                <h6 class="m-t-20 col-amber">Integrated plugins</h6>
+                                <p class="text-muted">You can enable one or more of the integrated Apache Cordova plugins to extend the functionality of your app. The integrated plugins are custom Apache Cordova plugins that the AppBuilder team modifies, configures and updates regularly.</p>
+                            </div>
+
+                            <div class="col-md-4 text-center">
+                                <i class="zmdi zmdi-devices zmdi-hc-2x col-cyan"></i>
+                                <h6 class="m-t-20 col-cyan">Responsive layout</h6>
+                                <p class="text-muted">Let this collection of responsive designed websites across a variety of website types help get your creative and developer juices flowing. Each site features a screenshot across 4 device widths and you can see the media queries.</p>
+                            </div>
+                        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-sm-12 ">
+          <div class="card" id="installation">
+              <div class="header">
+                  <h2><strong>Angular</strong> Installation</h2>
+              </div>
+              <div class="body">
+                  <p>This template is also built in Angular and requires Node 12.3.1 and NPM 6.9.0 to be installed.</p>
+                  <p>Angular version 9+ is used to build angular application.</p>
+                  <p><strong>Node.js and NPM:</strong> You can download Node.js from <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer nofollow external">NodeJS</a>. NPM comes bundled with Node.js</p>
+                  <p><strong>Angular-CLI:</strong> You can install angular-cli by executing following command from your terminal <code>install -g @angular/cli/</code>. More details can be found here <a href="https://github.com/angular/angular-cli" target="_blank" rel="noopener noreferrer nofollow external">Angular-CLI</a></p>
+                  <p><strong>Project setup:</strong> After installing Node, NPM and Angular CLI run <code>npm install</code> command from the root of your project directory into terminal. It will install all the necessary dependencies for the application using package.json file.</p>
+                  <p><strong>Development server:</strong> Run <code>ng serve</code> command from project directory and navigate to <strong>http://localhost:4200/</strong> into your browser.</p>
+                  <p><strong>Build:</strong> Run <code>ng build</code> command from project directory to build the project. The build artifacts will be stored in the dist/ directory.</p>
+                  <p><strong>Further help:</strong> To get more help on the angular-cli use <code>ng --help</code> or go check out <a href="https://github.com/angular/angular-cli" target="_blank" rel="noopener noreferrer nofollow external">Angular-CLI</a>.</p>
+              </div>
+          </div>
+      </div>
+    </div>
+		<div class="row clearfix">
+      <div class="col-sm-12">
+          <div class="card" id="features">
+              <div class="header">
+                  <h2><strong>Main </strong> Features</h2>
+              </div>
+              <div class="body">
+                  <div class="row">
+                      <div class="col-lg-4 col-md-12">
+                          <ul class="main_features">
+                              <li><strong><a href="https://angular.io/docs" target="_blank" rel="noopener noreferrer nofollow external">Angular</a> 9</strong></li>
+                              <li><strong><a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer nofollow external">Bootstrap</a> 4x</strong></li>
+                              <li>Fully Responsive pages</li>
+                              <li>Light &amp; Dark Versions</li>
+                              <li>RTL Full Versions</li>
+                              <li class="divider">RIVERRA</li>
+                              <li><strong>Unique</strong> Dashboard</li>
+                              <li><strong>6 Unique</strong> Color Scheme</li>
+                              <li>60+ Use Full Pages (No extra pages)</li>Built in <strong><a href="http://sass-lang.com/" target="_blank" rel="noopener noreferrer nofollow external">SASS</a></strong>
+                              <li>Fully <strong>Responsive</strong> &amp; Interactive</li>
+                              <li>Elegant &amp; Clean User Interface</li>
+                              <li>3000+ Icons</li>
+                              <li>Detailed Documentation</li>
+                              <li>Google fonts (<a href="https://fonts.google.com/specimen/Ubuntu" target="_blank" rel="noopener noreferrer nofollow external">Ubuntu</a>)</li>
+                          </ul>
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-12">
+                          <ul class="main_features">
+                              <li class="divider">User</li>
+                              <li>File Manager <span class="badge badge-default m-b-0">New</span></li>
+                              <li>Invoice</li>
+                              <li>Invoice V2<span class="badge badge-default m-b-0">New</span></li>
+                              <li>User <strong>Profile</strong> Page <span class="badge badge-default m-b-0">New</span></li>
+                              <li>Image Gallery</li>
+                              <li>Messenger Notifications</li>
+                              <li>Timeline <span class="badge badge-default m-b-0">New</span></li>
+
+                              <li class="divider">Other</li>
+                              <li>Text Editor</li>
+                              <li>E Charts</li>
+                              <li>Responsive Tables</li>
+                              <li>Progress Bars</li>
+                          </ul>
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-12">
+                        <ul class="main_features">
+                          <li class="divider">Ready to Use Application</li>
+                          <li><strong>Inbox</strong> Full App <span class="badge badge-default m-b-0">New</span></li>
+                          <li><strong>Chat App</strong> <span class="badge badge-default m-b-0">New</span></li>
+                          <li><strong>Calendar</strong> integration</li>
+                          <li>Contact Card<span class="badge badge-default m-b-0">New</span></li>
+
+                          <li class="divider">Forms</li>
+                          <li>Form Examples</li>
+                          <li>Form <strong>Validation</strong></li>
+
+                        </ul>
+                      </div>
+                  </div>
+                  <div class="alert alert-success" role="alert">
+                      <p class="mb-0"><strong>Authentication:-</strong> login, Sign Up, Forgot Password, Lockscreen, 404, 500 Error Pages</p>
+                      <p class="mb-0"><strong>Note:-</strong> Works well in all latest browsers like Chrome, Firefox, Safari, Microsoft Edge</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+		<div class="row clearfix">
+			<div class="col-sm-12 ">
+				<div class="card" id="grunt_file">
+					<div class="header">
+						<h2><strong>Grunt</strong> File & Installation</h2></div>
+            <div class="body m-b-10">
+              <p><strong>Installing Grunt:</strong> Run <code>npm install grunt --save-dev</code> command from your teminal to install grunt within your project.</p>
+              <p><strong>Grunt Sass:</strong> Run <code>grunt sass</code> command from your project directory. It will compile SASS to CSS for the project. This will read the file `assets/scss/filename.scss` and output a plain-css file to `/assets/css/filename.css`. </p>
+              <p><strong>Grunt JSHint:</strong> Run <code>grunt jshint</code> command from your project directory. It will checks all *.js files under `assetsjs/filename` for common syntax or coding errors using the JSHint utility.</p>
+              <p><strong>Grunt Sprite:</strong> Run <code>grunt sprite</code> command from your project directory. </p>
+              <p><strong>Further help:</strong> To get more help on the grunt checkout <a href="https://gruntjs.com/getting-started" rel="noopener noreferrer nofollow external" target="_blank">Grunt</a></p>
+              <p><strong>Note:</strong> However, any SASS code you write must be able compile via Grunt as well.It will generate pre-compiled javascript templates. Reads all the *.html files from `assets/js/filename` and outputs `assets/js/filename.templates.js`. Template.js will contains code of UI design and will be change each time you build solution through above command.</p>
+            </div>
+					<div class="body">
+                        <p><a href="https://gruntjs.com/" target="_blank"><strong>Grunt</strong></a> is a JavaScript task runner, a tool used to automatically perform frequent tasks such as minification, compilation, unit testing, and linting. It uses a command-line interface to run custom tasks defined in a file.</p>
+						<img alt="" src="doc/images/4.png" class="img-fluid">
+          </div>
+				</div>
+			</div>
+    </div>
+		<div class="row clearfix">
+			<div class="col-sm-12 ">
+				<div class="card" id="folder_structure">
+					<div class="header">
+						<h2><strong>Folder</strong> Structure</h2>
+					</div>
+          <div class="body">
+            <p>We follow standard Angular fodler structure and other created files are as following</p>
+            <h6 class="m-0">Template assets files can be located at</h6>
+            <pre>/src/assets/*</pre>
+
+            <h6 class="m-0">Routes can be located at</h6>
+            <pre>/src/app/app.routing.ts <br>/src/app/admin/admin.routing.ts</pre>
+
+            <h6 class="m-0">Layout files can be located at</h6>
+            <pre>/src/app/admin/layout/*</pre>
+
+            <h6 class="m-0">Navigation Bar and Sidebar can be located at</h6>
+            <pre>/src/app/admin/layout/header/* <br>/src/app/admin/layout/sidebar/*</pre>
+
+          </div>
+				</div>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-sm-12 ">
+				<div class="card" id="css">
+					<div class="header">
+						<h2><strong>Sass</strong> Structure</h2>
+					</div>
+					<div class="body">
+                        <blockquote>
+                            <p class="blockquote blockquote-primary">
+                                Please note that all Detail main Web Site, you need to set it up on your project <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" class="col-blue" target="_blank">Click Here..</a>
+                                <br>
+                                <br>
+                                <small>
+                                    - <strong>SCSS</strong>
+                                </small>
+                            </p>
+                        </blockquote>
+						<p>main.css is the main CSS file located in assets/css/ folder of the package. Whole CSS file is well indexed with topic and its related code.</p>
+						<img alt="" src="doc/images/6.png" class="img-fluid">
+					</div>
+				</div>
+			</div>
+		</div>
+    <div class="row clearfix">
+            <div class="col-sm-12 ">
+                <div class="card" id="fonts">
+                    <div class="header">
+                        <h2><strong>Font</strong> Used</h2>
+                    </div>
+                    <div class="body">
+                        <p>Google fonts are used in the template. They are as follows: <a href="https://fonts.google.com/">Google</a></p>
+                        <p>Font Awesome: <a href="https://fontawesome.com/v4.7.0/">Click to See</a></p>
+                        <p>All Images are used: <a href="https://www.pexels.com/">Pexels.com</a></p>
+                    </div>
+                </div>
+            </div>
+    </div>
+		<div class="row clearfix">
+			<div class="col-sm-12 ">
+				<div class="card" id="thank_you">
+					<div class="header">
+						<h2><strong>THANK YOU!</strong></h2>
+					</div>
+					<div class="body">
+            <p> Once again, thank you so much for purchasing this template. As I said at the beginning, I&#39;d be glad to help you if you have any questions relating to this template.</p>
+            <p>If you really like our work, design, performance and support then <a href="https://themeforest.net/downloads"> please don't forgot to rate us</a> on Themeforest, it really motivate us to provide something better.</p>
+					</div>
+				</div>
+			</div>
+    </div>
+	</div>
+</section>
+
+<!-- Jquery Core Js -->
+<script src="assets/bundles/libscripts.bundle.js"></script>
+<script src="assets/bundles/vendorscripts.bundle.js"></script>
+<script src="assets/bundles/mainscripts.bundle.js"></script>
+<script src="assets/js/index.js"></script>
+<script src="assets/js/common.js"></script>
+</body>
+</html>

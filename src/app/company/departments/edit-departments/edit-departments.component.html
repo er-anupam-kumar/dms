@@ -1,0 +1,65 @@
+<section class="content">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2><strong>Update</strong> Department</h2>
+          </div>
+          <div class="body">
+            <form
+              #updateDepartmentsForm="ngForm"
+              ngNativeValidate
+              (ngSubmit)="updateDepartments(updateDepartmentsForm.value)"
+            >
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="Enter name"
+                    maxlength="50"
+                    required
+                    [ngModel]="name"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Code</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="code"
+                    placeholder="Enter code"
+                    maxlength="25"
+                    [ngModel]="unique_id"
+                  />
+                </div>
+                <div class="form-group col-md-12">
+                  <label>Status</label>
+                  <select
+                    class="custom-select"
+                    name="status"
+                    [ngModel]="status"
+                  >
+                    <option value="0">Inactive</option>
+                    <option value="1">Active</option>
+                  </select>
+                </div>
+                <div class="col-md-12 mt-4">
+                  <a routerLink="/company/departments">
+                    <button class="btn">Cancel</button></a
+                  >
+                  <button type="submit" [disabled]="buttonDisabled" class="btn btn-primary float-right">
+                    Update Department
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,449 @@
+<section class="content file_manager">
+  <div class="container">
+    <div class="row clearfix m-0 p-0">
+      <div class="col-lg-3 homeSide" id="sticky-sidebar">
+        <div class="sidebar-item">
+          <div class="make-me-sticky">
+            <div class="card">
+              <div class="body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        maxlength="20"
+                        placeholder="Search file.."
+                        (keyup)="searchEnter($event)"
+                        [(ngModel)]="search"
+                      />
+                      <div class="input-group-append">
+                        <button
+                          class="btn btn-primary m-0 px-3"
+                          (click)="searchItem()"
+                          type="button"
+                        >
+                          <i class="material-icons fs-13-px font-weight-bold"
+                            >search</i
+                          >
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <ul class="nav nav-tabs file-manager-menu">
+                <li>
+                  <a
+                    class="nav-link d-flex items-center"
+                    [routerLink]="['/company/documents']"
+                  >
+                    <i class="fa fa-check mr-2 font-18"></i>
+                    All Files & Folders
+                  </a>
+                </li>
+                <li>
+                  <a
+                    routerLink="favorites"
+                    class="d-flex items-center rounded-md"
+                  >
+                    <i class="fa fa-star mr-2 font-18" aria-hidden="true"></i>
+                    Favorites Files
+                  </a>
+                </li>
+                <li>
+                  <a
+                    routerLink="approval"
+                    class="d-flex items-center rounded-md"
+                  >
+                    <i
+                      class="fa fa-certificate mr-2 font-18"
+                      aria-hidden="true"
+                    ></i>
+                    Files For Approval
+                  </a>
+                </li>
+                <li *ngIf="currentFileId && history">
+                  <a
+                    href="javascript:;"
+                    class="d-flex items-center rounded-md"
+                    (click)="scroll('history')"
+                  >
+                    <i class="fa fa-history mr-2 font-18"></i>
+                    Approval History
+                  </a>
+                </li>
+              </ul>
+              <ul class="border-t file-manager-menu">
+                <li
+                  *ngIf="
+                    !currentFileId &&
+                    hideAddFolderBtn() &&
+                    modify == 'Yes'
+                  "
+                >
+                  <a
+                    href="javascript:;"
+                    (click)="openModal(addfolder, 'md')"
+                    class="d-flex items-center rounded-md"
+                  >
+                    <i class="material-icons mr-2 font-18">add</i>
+                    Add New Folder
+                  </a>
+                </li>
+                <li
+                  *ngIf="
+                    !currentFileId &&
+                    getCurrentFolderId() &&
+                    modify == 'Yes'
+                  "
+                >
+                  <a
+                    href="javascript:;"
+                    (click)="openModal(uploadFile, 'md')"
+                    class="d-flex items-center rounded-md"
+                  >
+                    <i class="material-icons mr-2 font-18">publish</i>
+                    Upload File
+                  </a>
+                </li>
+                <li
+                  *ngIf="
+                    currentFileId &&
+                    isParentFile == 'Yes' &&
+                    modify == 'Yes'
+                  "
+                >
+                  <a
+                    href="javascript:;"
+                    (click)="openModal(uploadFile, 'md')"
+                    class="d-flex items-center rounded-md"
+                  >
+                    <i class="material-icons mr-2 font-18">publish</i>
+                    Upload File Version
+                  </a>
+                </li>
+                <li
+                  *ngIf="
+                    currentFileId &&
+                    approval_request == 'Yes' &&
+                    modify == 'Yes' &&
+                    userRows?.length>0
+                  "
+                >
+                  <a
+                    href="javascript:;"
+                    (click)="openModal(approvalFile, 'md')"
+                    class="d-flex items-center rounded-md"
+                  >
+                    <i class="fa fa-superpowers mr-2 font-18"></i>
+                    Send For Approval
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="card"
+              *ngIf="
+                currentFileId && my_approval == 'Yes' && modify == 'Yes'
+              "
+            >
+              <div class="header">
+                <h2><strong>Approval</strong> request</h2>
+              </div>
+              <ul class="nav nav-tabs file-manager-menu">
+                <li class="d-flex">
+                  <a
+                    href="javascript:;"
+                    class="d-flex items-center rounded-md mr-2"
+                    (click)="openModal(approveFile, 'md')"
+                  >
+                    <i
+                      class="fa fa-check font-18 text-success mr-2"
+                      aria-hidden="true"
+                    ></i>
+                    Approve
+                  </a>
+                  <a
+                    href="javascript:;"
+                    class="d-flex items-center rounded-md"
+                    (click)="openModal(rejectFile, 'md')"
+                  >
+                    <i
+                      class="fa fa-times font-18 text-danger mr-2"
+                      aria-hidden="true"
+                    ></i>
+                    Reject
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="card" *ngIf="currentFileId && versions">
+              <div class="header">
+                <h2><strong>File</strong> versions</h2>
+              </div>
+              <div class="body">
+                <ul class="follow_us list-unstyled mb-0">
+                  <li class="online" *ngFor="let version of versions">
+                    <div
+                      class="media hover mb-0"
+                      (click)="openFile(version.id)"
+                    >
+                      <i
+                        class="fa fa-file text-primary mt-1 mr-2"
+                        aria-hidden="true"
+                      ></i>
+                      <div class="media-body">
+                        <span class="version-name">{{ version.name }}</span>
+                        <ul class="list-inline d-flex">
+                          <li>
+                            <span class="message">
+                              {{ version.created_at }}:
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9" id="main">
+        <router-outlet></router-outlet>
+        <div class="card progress-card" *ngIf="this.progressData.length > 0">
+          <div class="header">
+            <h2>
+              <strong>Files upload progess</strong>
+            </h2>
+          </div>
+          <div class="body">
+            <div *ngFor="let data of progressData" class="mb-2">
+              <span>{{ data.fileName }}</span>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-info progress-bar-striped"
+                  role="progressbar"
+                  attr.aria-valuenow="{{ data.value }}"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  [ngStyle]="{ width: data.value + '%' }"
+                >
+                  {{ data.value }}%
+                </div>
+              </div>
+            </div>
+
+            <div
+              *ngIf="message.length"
+              class="alert alert-secondary my-3"
+              role="alert"
+            >
+              <ul *ngFor="let msg of message; let i = index">
+                <li>{{ msg }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #addfolder let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title mt-0">Add Folder</h6>
+    <span class="float-right hover" (click)="modal.dismiss('Close click')">
+      <i class="zmdi zmdi-close"></i>
+    </span>
+  </div>
+  <form
+    #addFolderForm="ngForm"
+    ngNativeValidate
+    (ngSubmit)="addFolder(addFolderForm.value)"
+  >
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Folder Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="Enter name"
+            maxlength="25"
+            required
+            ngModel
+          />
+        </div>
+
+        <div class="form-group col-md-12">
+          <label>Comment</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            placeholder="Enter comment"
+            maxlength="100"
+            required
+            ngModel
+          />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer theme-blush">
+      <button type="submit" class="btn btn-md btn-rounded btn-primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #uploadFile let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title mt-0">Upload File</h6>
+    <span class="float-right hover" (click)="modal.dismiss('Close click')">
+      <i class="zmdi zmdi-close"></i>
+    </span>
+  </div>
+  <form ngNativeValidate (ngSubmit)="uploadFiles()">
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>File</label>
+          <input
+            type="file"
+            multiple
+            class="form-control"
+            name="file"
+            required
+            (change)="attachFile($event)"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer theme-blush">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #approvalFile let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title mt-0">Approval File</h6>
+    <span class="float-right hover" (click)="modal.dismiss('Close click')">
+      <i class="zmdi zmdi-close"></i>
+    </span>
+  </div>
+  <form
+    #approvalFileForm="ngForm"
+    ngNativeValidate
+    (ngSubmit)="approvalFiles(approvalFileForm.value)"
+  >
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Select User</label>
+          <select class="custom-select" name="user_id" ngModel required>
+            <option value="">Select User</option>
+            <ng-container *ngFor="let item of userRows">
+              <option
+                value="{{ item.id }}"
+                *ngIf="item.status == '1' && item.email != currentUsermail"
+              >
+                {{ item.name }}
+              </option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="form-group col-md-12">
+          <label>Remarks</label>
+          <input
+            type="text"
+            class="form-control"
+            name="comment"
+            placeholder="Enter remarks"
+            maxlength="100"
+            required
+            ngModel
+          />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer theme-blush">
+      <button type="submit" class="btn btn-primary">Send For Approval</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #approveFile let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title mt-0">Approve File Remark</h6>
+    <span class="float-right hover" (click)="modal.dismiss('Close click')">
+      <i class="zmdi zmdi-close"></i>
+    </span>
+  </div>
+  <form
+    #approveFileForm="ngForm"
+    ngNativeValidate
+    (ngSubmit)="updateApprovalFiles(approveFileForm.value, '1')"
+  >
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Approve Remarks</label>
+          <input
+            type="text"
+            class="form-control"
+            name="comment"
+            placeholder="Enter remarks"
+            maxlength="100"
+            required
+            ngModel
+          />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer theme-blush">
+      <button type="submit" class="btn btn-primary">Approve</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #rejectFile let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title mt-0">Reject File Remark</h6>
+    <span class="float-right hover" (click)="modal.dismiss('Close click')">
+      <i class="zmdi zmdi-close"></i>
+    </span>
+  </div>
+  <form
+    #rejectFileForm="ngForm"
+    ngNativeValidate
+    (ngSubmit)="updateApprovalFiles(rejectFileForm.value, '2')"
+  >
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label>Reject Remarks</label>
+          <input
+            type="text"
+            class="form-control"
+            name="comment"
+            placeholder="Enter remarks"
+            maxlength="100"
+            required
+            ngModel
+          />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer theme-blush">
+      <button type="submit" class="btn btn-primary">Reject</button>
+    </div>
+  </form>
+</ng-template>

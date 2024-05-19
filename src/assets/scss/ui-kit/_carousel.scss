@@ -1,0 +1,75 @@
+// display flex was causing errors
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active{
+    display: block;
+}
+
+.carousel{
+  z-index: 1;
+    .carousel-inner{
+        .carousel-item{
+          h5{
+              @media only screen and (max-width: 1366px) {
+                  font-size: 20px;
+              }
+          }
+          small{
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+          }
+      }
+    }
+    .now-ui-icons{
+        font-size: 2em;
+    }
+    &.twitter,&.google,&.facebook{
+      .carousel-inner{
+          .carousel-item{
+              padding: 20px !important;
+          }
+      }
+  }
+  .carousel-caption{
+    color: var(--color-900);
+  }
+  .carousel-indicators li{
+      background-color:  var(--color-900);
+  }
+  .carousel-control-next-icon,
+  .carousel-control-prev-icon{
+      background-color: var(--color-900);
+      border-radius: 4px;
+      height: 30px;
+  }
+}
+.carousel-caption.ut{
+  position: inherit;
+  right: inherit;
+  bottom: inherit;
+  left: inherit;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+  color: var(--color-fff);
+  margin-top:30px;
+}
+.carousel-caption.vt{
+  position: inherit;
+  right: inherit;
+  bottom: inherit;
+  left: inherit;
+  margin-top:10px;
+}
+
+.carousel-control-prev,.carousel-control-next{
+  display: none;
+}
+.carousel-indicators{
+  bottom: -13px;
+}
+.remove-dot{
+  .carousel-indicators{
+    display: none;
+  }
+}

@@ -1,0 +1,26 @@
+<ul class="list-unstyled list-referrals">
+    <li>
+        <p><span class="value">2301</span><span class="text-muted float-right">Facebook visitors</span></p>
+        <div class="progress progress-xs progress-transparent ">
+            <div class="progress-bar progress-bar-success" data-transitiongoal="87" [ngStyle]="{'width.%': facebookTransitiongoal}"></div>
+        </div>
+    </li>
+    <li>
+        <p><span class="value">2107</span><span class="text-muted float-right">Twitter visitors</span></p>
+        <div class="progress progress-xs progress-transparent">
+            <div class="progress-bar progress-bar-warning" [ngStyle]="{'width.%': tweeterTransitiongoal}"></div>
+        </div>
+    </li>
+    <li>
+        <p><span class="value">2308</span><span class="text-muted float-right">Google visitors</span></p>
+        <div class="progress progress-xs progress-transparent">
+            <div class="progress-bar progress-bar-danger" [ngStyle]="{'width.%': searchTransitiongoal}"></div>
+        </div>
+    </li>
+    <li>
+        <p><span class="value">1024</span><span class="text-muted float-right">Affiliates visitors</span></p>
+        <div class="progress progress-xs progress-transparent custom-color-green">
+            <div class="progress-bar" [ngStyle]="{'width.%': visitsTransitiongoal}"></div>
+        </div>
+    </li>
+</ul>

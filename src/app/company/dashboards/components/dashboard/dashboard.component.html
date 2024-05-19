@@ -1,0 +1,178 @@
+<!-- Main Content -->
+<router-outlet></router-outlet>
+<section class="content">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-lg-12">
+        <div class="row clearfix">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="input-group mb-0">
+                      <input type="text" class="form-control" name="search" placeholder="Search here ..." maxlength="50" (keyup)="searchEnter($event)" [(ngModel)]="search"/>
+                      <div class="input-group-append">
+                        <button type="button" (click)="searchItem()" class="btn btn-primary m-0 px-5 font-weight-bold">
+                          Search File
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8 flex-column" *ngIf="isAdmin == 'Yes'">
+            <div class="card border-left-4x border-secondary">
+              <div class="header">
+                <h2><strong>Current</strong> Update</h2>
+              </div>
+              <div class="body">
+                <!--   <div class="d-flex items-center">
+                  <div class="d-flex flex-column">
+                    <div class="font-lg">Current Update</div>
+                    <div class="font-md text-muted">
+                      Information about users & storage
+                    </div>
+                  </div>
+                </div> -->
+                <div class="d-flex flex-row flex-wrap justify-content-between text-center">
+                  <div class="d-flex flex-column">
+                    <div class="font-weight-bold text-muted">Total Space</div>
+                    <div class="mt-1 mb-2">{{ storage.purchased_storage }}</div>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <div class="font-weight-bold text-muted">Space Used</div>
+                    <div class="mt-1 mb-2">{{ storage.used_storage }}</div>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <div class="font-weight-bold text-muted">Remaining</div>
+                    <div class="mt-1 mb-2">{{ storage.available_storage }}</div>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <div class="font-weight-bold text-muted">Users Allowed</div>
+                    <div class="mt-1 mb-2">{{ users.purchased_users }}</div>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <div class="font-weight-bold text-muted">Users Created</div>
+                    <div class="mt-1 mb-2">{{ users.used_users }}</div>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <div class="font-weight-bold text-muted">Available</div>
+                    <div class="mt-1 mb-2">{{ users.available_users }}</div>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <div class="d-flex justify-content-between">
+                      <small>Storage</small>
+                      <span>{{ storage.purchased_storage }}</span>
+                    </div>
+                    <div class="progress">
+                      <div
+                      class="progress-bar progress-bar-success"
+                      role="progressbar"
+                      style="width: calc(({{ storage.used }}/{{
+                          storage.available
+                        }})*100%)"
+                      aria-valuenow=""
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <div class="d-flex justify-content-between">
+                      <small>Users</small
+                        ><span>{{ users.purchased_users }}</span>
+                      </div>
+                      <div class="progress">
+                        <div
+                        class="progress-bar progress-bar-primary"
+                        role="progressbar"
+                        style="width: calc(({{ users.used_users }}/{{
+                          users.purchased_users
+                        }})*100%)"
+                        aria-valuenow=""
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4" *ngIf="isAdmin == 'Yes'">
+              <div class="card">
+                <div class="header">
+                  <h2><strong>Quick</strong> Links</h2>
+                </div>
+                <div class="body">
+                  <div class="el-buttons-list full-width">
+                    <a class="btn btn-sm btn-warning w-100 p-2" routerLink="/company/documents/favorites" >
+                      <i class="os-icon os-icon-window-content"></i>
+                      <span class="font-weight-bold">Favorite Files</span>
+                    </a>
+                    <a class="btn btn-sm btn-info w-100 p-2" routerLink="/company/subscription" >
+                      <i class="os-icon os-icon-wallet-loaded"></i>
+                      <span class="font-weight-bold">Subscription & Plans</span>
+                    </a>
+                    <a class="btn btn-sm btn-primary w-100 p-2" routerLink="/company/create-users" >
+                      <i class="os-icon os-icon-delivery-box-2"></i>
+                      <span class="font-weight-bold">Create New User</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12" *ngIf="files?.length > 0">
+              <div class="card">
+                <div class="header">
+                  <h2><strong>Recent</strong> Files</h2>
+                </div>
+                <div class="body table-responsive">
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>File Name</th>
+                        <th>Location</th>
+                        <th>Size</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let fileData of files">
+                        <td>{{fileData.name}}</td>
+                        <td><a routerLink="/company/documents/folders/{{fileData.folder_id}}">{{fileData.location}}</a></td>
+                        <td>{{fileData.size}}</td>
+                        <td>{{fileData.created_at}}</td>
+                        <td class="row-actions">
+                          <a routerLink="../../documents/files/{{fileData.id}}"><i class="icon-eye"></i></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-md-12 col-lg-12">
+          <div class="card">
+            <div class="body">
+              <p class="copyright mb-0">Copyright 2022 © All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div><!-- .row End -->
+    </div>
+  </section>

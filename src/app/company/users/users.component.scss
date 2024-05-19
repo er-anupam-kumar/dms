@@ -1,0 +1,19 @@
+.headerRightItem{
+    width: 400px;
+    height: 30px;
+    position: absolute;
+    list-style: none;
+    top: 14px;
+    right: 10px;
+}
+.headerRightItem ul{
+    display: inline-block;
+}
+.headerRightItem ul li{
+    display: inline-block;
+}
+
+.card .header{
+    margin: 0;
+    padding: 10px 20px;
+}

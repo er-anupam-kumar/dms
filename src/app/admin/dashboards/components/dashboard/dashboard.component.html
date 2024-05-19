@@ -1,0 +1,284 @@
+<!-- Main Content -->
+<router-outlet></router-outlet>
+<section class="content">
+  <div class="container">
+    <div class="row clearfix left-menu-view">
+      <div class="col-lg-12">
+        <div class="card mb-4">
+          <div class="body block-header">
+            <div class="row">
+              <div class="col-lg-6 col-md-8 col-sm-12">
+                <h2>
+                  <a [routerLink]="['dashboard']"></a> Welcome to {{ title }}
+                </h2>
+                <ul class="breadcrumb p-l-0 p-b-0">
+                  <li class="breadcrumb-item active" id="dateview"></li>
+                </ul>
+              </div>
+              <div class="col-lg-6 col-md-4 col-sm-12 text-right">
+                <div class="d-flex justify-content-end top-info">
+                  <a [routerLink]="['/admin/app/create-users']" class="btn btn-link" *ngIf="this.permissions.modifyArray.includes('Users')">
+                    <div class="top-deatil">
+                      <i class="icon-user"></i>
+                    </div>
+                    <span>New User</span>
+                  </a>
+                  <a [routerLink]="['/admin/app/invoices']" class="btn btn-link" *ngIf="this.permissions.viewArray.includes('Invoices')">
+                    <div class="top-deatil">
+                      <i class="icon-calculator"></i>
+                    </div>
+                    <span>Invoices</span>
+                  </a>
+                  <a [routerLink]="['/admin/app/all-registration']" class="btn btn-link" *ngIf="this.permissions.viewArray.includes('Registrations')">
+                    <div class="top-deatil">
+                      <i class="icon-calendar"></i>
+                    </div>
+                    <span>Registration</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card">
+          <div class="body">
+            <p class="text-muted">
+              Active Clients
+              <small class="text-muted float-right"
+              >of {{ clients.total_clients }}</small
+              >
+              <!-- INact:  {{ clients.inactive_clients }}, -->
+            </p>
+
+            <h4 class="m-t-0">{{ clients.active_clients }}</h4>
+            <div class="progress m-t-10">
+              <div
+              class="progress-bar l-green"
+              role="progressbar"
+              aria-valuenow=""
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: calc(({{ clients.active_clients }}/ {{
+                clients.total_clients
+              }} * 100%))"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card">
+          <div class="body">
+            <p class="text-muted">
+              Active Plans
+              <small class="text-muted float-right"
+              >of {{ plan.total_plans }}</small
+              >
+            </p>
+            <h4 class="m-t-0">{{ plan.active_plans }}</h4>
+            <div class="progress m-t-10">
+              <div
+              class="progress-bar l-blush"
+              role="progressbar"
+              aria-valuenow=""
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: calc(({{ plan.active_plans }}/ {{
+                plan.total_plans
+              }} * 100%))"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card">
+          <div class="body">
+            <p class="text-muted">
+              Active Addons
+              <small class="text-muted float-right"
+              >of {{ addons.total_addons }}</small
+              >
+            </p>
+            <h4 class="m-t-0">{{ addons.active_addons }}</h4>
+            <div class="progress m-t-10">
+              <div
+              class="progress-bar l-parpl"
+              role="progressbar"
+              aria-valuenow=""
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: calc(({{ addons.active_addons }}/ {{
+                addons.total_addons
+              }} * 100%))"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card">
+          <div class="body">
+            <p class="text-muted">
+              Active Users
+              <small class="text-muted float-right"
+              >of {{ users.total_users }}</small
+              >
+            </p>
+            <h4 class="m-t-0">{{ users.active_users }}</h4>
+            <div class="progress m-t-10">
+              <div
+              class="progress-bar l-blue"
+              role="progressbar"
+              aria-valuenow=""
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: calc(({{ users.active_users }}/ {{
+                users.total_users
+              }} * 100%))"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6" *ngIf="this.permissions.viewArray.includes('Invoices')">
+        <div class="card">
+          <div class="box-sale mb-0 bg-lightest">
+            <div class="header">
+              <h2 class="box-title margin-0">
+                <strong>Sales</strong> Overview
+              </h2>
+            </div>
+            <div class="box-body">
+              <div class="d-flex justify-content-between align-items-center mb-10">
+                <div>
+                  <h5 class="mb-0">Today's Sale</h5>
+                  <small class="text-muted">Total sale of today</small>
+                </div>
+                <div>
+                  <h6 class="mb-0">₹ {{ sales.today_amount }}</h6>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-10 mt-3">
+                <div>
+                  <h5 class="mb-0">This Month Sale</h5>
+                  <small class="text-muted">Total sale of this month</small>
+                </div>
+                <div>
+                  <h6 class="mb-0">₹ {{ sales.month_amount }}</h6>
+                </div>
+              </div>
+            </div>
+            <div class="box-footer">
+              <h4 class="mb-0 mt-0">Total Amount</h4>
+              <p class="font-size-18 font-weight-bold">
+                ₹ {{ sales.total_amount }}
+              </p>
+              <div class="progress">
+                <div
+                class="progress-bar progress-bar-success"
+                role="progressbar"
+                aria-valuenow=""
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: calc( ({{ sales.total_amount }}/100000)*100%)"
+                >
+                <span class="sr-only">40% Complete (primary)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6" *ngIf="this.permissions.viewArray.includes('Invoices') && latest_transactions?.length>0">
+      <div class="card">
+        <div class="header">
+          <h2><strong>Latest</strong> Txns</h2>
+        </div>
+        <div class="body">
+          <div class="table-responsive social_media_table">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Company Name</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of latest_transactions">
+                  <td>{{ data.company.name }}</td>
+                  <td>{{ data.created_at }}</td>
+                  <td>{{ data.amount }}</td>
+                  <td>
+                    <span
+                    class="badge {{
+                    data.status == 0 ? 'badge-danger' : 'badge-success'
+                  }} "
+                  >{{ data.status == 0 ? "Pending" : "Success" }}</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-12" *ngIf="this.permissions.viewArray.includes('Users') && latest_clients?.length>0">
+    <div class="card">
+      <div class="header">
+        <h2><strong>New</strong> Clients</h2>
+      </div>
+      <div class="body table-responsive">
+        <table
+        class="table table-striped table-hover"
+        >
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let clientdata of latest_clients">
+            <td>{{ clientdata.name }}</td>
+            <td>{{ clientdata.phone }}</td>
+            <td>{{ clientdata.email }}</td>
+            <td>{{ clientdata.created_at }}</td>
+            <td class="row-actions">
+              <a routerLink="/admin/app/edit-registration/{{ clientdata.id }}"><i class="icon-eye"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="row clearfix">
+  <div class="col-md-12 col-lg-12">
+    <div class="card active-bg">
+      <div class="body">
+        <p class="copyright m-b-0 text-white">
+          Copyright 2022 © All Rights Reserved. {{ title }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>

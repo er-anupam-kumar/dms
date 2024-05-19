@@ -1,0 +1,91 @@
+<section class="inbox content">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2><strong>Departments</strong> table</h2>
+            <a routerLink="/company/create-departments">
+              <button class="header-dropdown btn btn-primary btn-round p-5 m-5">
+                Create New
+              </button></a>
+            </div>
+            <div class="body">
+              <div class="row">
+                <div class="col-md-12 mb-2">
+                  <div class="form-group float-right">
+                    <label>Search:</label>
+                    <input
+                    type="text"
+                    class="datatablesearch-style"
+                    (keyup)="updateFilter($event)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <ngx-datatable
+              style="border-radius: 10px"
+              #myFilterTable
+              class="bootstrap"
+              [rows]="rows"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="'auto'"
+              [limit]="10"
+              [scrollbarH]="true"
+              [sorts]="[{ prop: 'created_at', dir: 'desc' }]"
+              >
+              <ngx-datatable-column name="S.no." prop="id" [width]="75">
+                <ng-template
+                let-rowIndex="rowIndex"
+                ngx-datatable-cell-template
+                >
+                {{ rowIndex + 1 }}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Name" prop="name">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.name }}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Code" prop="unique_id">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.unique_id }}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Created At" prop="created_at">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.created_at }}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Status" prop="status">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <span
+                class="badge {{
+                row.status == 0 ? 'badge-danger' : 'badge-success'
+              }} "
+              >{{ row.status == 0 ? "Inactive" : "Active" }}</span
+              >
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Action" [sortable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a routerLink="/company/edit-departments/{{ row.id }}">
+                <i class="fa fa-pencil-square-o text-success icon-cursor-pointer" aria-hidden="true"></i>
+              </a>
+              <i (click)="deleteAllUserTable(row.id)" class="fa fa-trash text-danger mx-2 icon-cursor-pointer" aria-hidden="true"></i>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>

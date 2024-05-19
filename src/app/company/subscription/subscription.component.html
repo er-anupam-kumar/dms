@@ -1,0 +1,124 @@
+<section class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="header">
+           <h2><strong>Current</strong> Plan</h2>
+         </div>
+         <div class="body widget-user">
+          <div class="row">
+            <div class="col-md-3 col-sm-12">
+              <h5 class="mb-0">{{subscription.plan_name}}</h5>
+              <small>Plan name</small>
+            </div>
+            <div class="col-md-3 col-sm-12">
+              <h5 class="mb-0">{{subscription.start_date}}</h5>
+              <small>Purchased On</small>
+            </div>
+            <div class="col-md-2 col-sm-12">
+              <h5 class="mb-0">{{subscription.storage}} GB</h5>
+              <small>Starage</small>
+            </div>
+            <div class="col-md-2 col-sm-12">
+              <h5 class="mb-0">{{subscription.users}}</h5>
+              <small>Users</small>
+            </div>
+            <div class="col-md-2 col-sm-12">
+              <h5 class="mb-0">1 year</h5>
+              <small>Validity</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul
+  ngbNav
+  #nav="ngbNav"
+  [(activeId)]="active"
+  [destroyOnHide]="false"
+  class="nav-tabs"
+  >
+  <li [ngbNavItem]="1" [destroyOnHide]="true">
+    <a ngbNavLink>Plans</a>
+    <ng-template ngbNavContent>
+      <div class="row clearfix">
+        <ng-container *ngFor="let row of planRows">
+          <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="row.status == 1 && row.id != plan_id">
+            <div class="card">
+              <ul class="pricing body">
+                <li>
+                  <div class="h3">{{ row.name }}</div>
+                </li>
+                <li>
+                  Storage:
+                  <span class="text-primary">{{ row.storage }}</span> GB
+                </li>
+                <li>
+                  Users:
+                  <span class="text-primary">{{ row.users }}</span>
+                </li>
+                <li class="newline-content">Description: {{ row.description }}</li>
+                <li>
+                  <h3>₹{{ row.price }}</h3>
+                  <span>per year</span>
+                </li>
+                <li>
+                  <button
+                  class="btn {{ row.id == plan_id ? 'disabled' : 'btn-primary'}}" 
+                  (click)="row.id != plan_id?payment(row.id, 'plan'):''"
+                  >
+                  Buy Now
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-template>
+</li>
+
+<li [ngbNavItem]="2">
+  <a ngbNavLink>Addons</a>
+  <ng-template ngbNavContent>
+    <div class="row clearfix">
+      <ng-container *ngFor="let row of addonsRows">
+        <div class="col-lg-3 col-md-6 col-sm-12" *ngIf="row.status == 1">
+          <div class="card">
+            <ul class="pricing body">
+              <li>
+                <div class="h3">{{ row.name }}</div>
+              </li>
+              <li>
+                {{ row.type == 0 ? "Users:" : "Storage:" }}
+                <span class="text-primary">{{ row.value }}</span>
+                {{ row.type == 0 ? "" : "GB" }}
+                <br />
+              </li>
+              <li>
+                <span class="">Description: {{ row.description }}</span>
+              </li>
+              <li>
+                <h3>₹{{ row.price }}</h3>
+              </li>
+              <li>
+                <button
+                class="btn btn-primary"
+                (click)="payment(row.id, 'addon')"
+                >
+                Buy Now
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
+</li>
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>
+</section>

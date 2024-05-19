@@ -1,0 +1,33 @@
+<div class="cwidget-scroll" #chatBox>
+  <ul class="chat-widget m-r-5 clearfix">
+    <ng-container *ngFor="let message of options.messages">
+      <li class="left float-left" *ngIf="message.type == 'received'">
+          <img src="{{message.senderProfileImage}}" class="rounded-circle" alt="">
+          <ul class="list-unstyled chat-info">
+            <li><span class="message" [innerHTML]="message.message"></span></li>
+          </ul>
+      </li>
+      <li class="right" *ngIf="message.type == 'sent'">
+          <img src="{{message.reciverProfileImage}}" class="rounded-circle" alt="">
+          <ul class="list-unstyled chat-info">
+              <li><span class="message" [innerHTML]="message.message"></span></li>
+          </ul>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+<div class='c-interaction'[ngClass]="status ? 'c-interaction__options' : 'danger'">
+  <button aria-label="Toggle more options." class='c-interaction__toggle c-interaction__button' (click)="clickEvent()" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus"><path d="M12 5v14M5 12h14"/></svg></button>
+  <div class="input-group-append c-interaction__button chat-send-btn ml-2">
+      <span (click)="onSend()" ><i class="zmdi zmdi-mail-send"></i></span>
+  </div>
+  <label class='vh' for='message'>Message:</label>
+  <input class='c-interaction__input form-control' type='text' id='messsage' [value]="newMessage" (input)="newMessage = $event.target.value;" placeholder="Enter text here...">
+  <div class='c-interaction__menu'>
+      <ul>
+      <li><button aria-label="Record a Video." class='c-interaction__button'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></button></li>
+      <li><button aria-label="Take a Picture." class='c-interaction__button'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></button></li>
+      <li><button aria-label="Upload an Image." class='c-interaction__button'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></button></li>
+      </ul>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+﻿.media {
+  @extend .m-b-20;
+  &.mleft{
+      .media-left{
+          @extend .m-r-20;
+      }
+  }
+  &.mright{
+      .media-body{
+          @extend .align-right;
+      }
+      .media-right{
+          @extend .m-l-20;
+      }
+  }
+
+  .media-body {
+      color: var(--color-600);
+      font-size: 14px;
+
+      .media-heading {
+          @extend .margin-0;
+          font-weight: $font-weight-bold;
+          font-size: 16px;
+          color: $grey-900;
+      }
+  }
+}
+.ui-media{
+  .media-body {
+      color: var(--color-400);
+      .media-heading {
+          color: var(--color-600);
+      }
+  }
+}
+.bs-example{
+  .media{
+      .media-left{
+          @extend .m-r-20;
+      }
+  }
+}

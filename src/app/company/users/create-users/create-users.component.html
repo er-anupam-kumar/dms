@@ -1,0 +1,205 @@
+<section class="content">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="body">
+          <form
+            #createuserForm="ngForm"
+            ngNativeValidate
+            (ngSubmit)="createuser(createuserForm.value)"
+          >
+            <div class="card">
+              <div class="header">
+                <h2><strong>Create</strong> User</h2>
+              </div>
+              <div class="row p-4">
+                <div class="form-group col-md-6">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="Enter name"
+                    maxlength="50"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Phone</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="Enter phone"
+                    class="form-control"
+                    maxlength="13"
+                    pattern="[0-9]{7,13}"
+                    title="Please enter valid phone number"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    placeholder="Enter email"
+                    maxlength="50"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Address</label>
+                  <input
+                    name="address"
+                    placeholder="Enter address"
+                    type="text"
+                    class="form-control"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input
+                    name="city"
+                    placeholder="Enter city"
+                    type="text"
+                    class="form-control"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <input
+                    name="state"
+                    placeholder="Enter state"
+                    type="text"
+                    class="form-control"
+                    maxlength="30"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Department</label>
+                  <div class="dropdown" ngbDropdown>
+                    <a
+                      class="dropdown-toggle form-control dropDownDepartmentSelector"
+                      ngbDropdownToggle
+                      role="button"
+                    >
+                    <span *ngIf="departments.length == 0"
+                    >Select Department</span
+                  >
+                  <span
+                    class="badge badge-primary"
+                    *ngFor="let department of departments"
+                  >
+                    {{ department.name }}
+                  </span>
+                    </a>
+                    <div class="dropdown-menu col-12" ngbDropdownMenu>
+                      <div class="p-1" *ngFor="let item of rows">
+                        <div class="form-control">
+                          <input
+                            class="form-check-input ml-0"
+                            type="checkbox"
+                            (change)="departmentSave(item.id, item.name)"
+                            value="{{ item.id }}"
+                            id="{{ item.name }}{{ item.id }}"
+                          />
+                          <label
+                            class="form-check-label ml-4"
+                            for="{{ item.name }}{{ item.id }}"
+                            style="width: 100%"
+                          >
+                            {{ item.name }}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Status</label>
+                  <select
+                    class="custom-select"
+                    name="status"
+                    [ngModel]="status"
+                  >
+                    <option value="0">Inactive</option>
+                    <option value="1">Active</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4" *ngIf="departments.length != 0">
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table mb-0">
+                    <tr *ngFor="let item of departments">
+                      <th class="p-0">
+                        {{ item.name }}
+                      </th>
+                      <td class="p-0">
+                        <div class="form-group">
+                          <div class="checkbox">
+                            <input
+                              id="{{ item.id }}-view"
+                              class="form-check-input"
+                              type="checkbox"
+                              (change)="saveView($event)"
+                              value="{{ item.id }}"
+                            />
+                            <label for="{{ item.id }}-view">View</label>
+                          </div>
+                        </div>
+                      </td> 
+                      <td class="p-0">
+                        <div class="form-group">
+                          <div class="checkbox">
+                            <input
+                              id="{{ item.id }}-modify"
+                              class="form-check-input"
+                              type="checkbox"
+                              (change)="saveModify($event)"
+                              value="{{ item.id }}"
+                            />
+                            <label for="{{ item.id }}-modify">Modify</label>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <a routerLink="/company/users">
+                    <button class="btn">Cancel</button></a
+                  >
+                  <button
+                    type="submit"
+                    [disabled]="buttonDisabled"
+                    class="btn btn-primary float-right"
+                  >
+                    Create User
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

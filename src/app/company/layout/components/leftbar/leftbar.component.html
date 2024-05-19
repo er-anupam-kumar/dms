@@ -1,0 +1,118 @@
+<aside id="leftsidebar" class="sidebar {{ hmenu }}">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-12">
+        <div class="menu">
+          <div class="navbar-logo">
+            <a class="navbar-brand" [routerLink]="['dashboard']">
+              <p class="h5 text-light m-0 mt-3">
+                <b>{{ title }}</b>
+              </p>
+            </a>
+          </div>
+          <ul class="list mb-0">
+            <li
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'dashboard' }"
+            >
+              <a [routerLink]="['dashboard']">
+                <i class="icon-speedometer"></i><span>Dashboard</span>
+              </a>
+            </li>
+            <li
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'app' }"
+            >
+              <a [routerLink]="['documents']">
+                <i class="icon-grid"></i><span>Documents</span>
+              </a>
+            </li>
+            <li
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'widgets' }"
+              *ngIf="isAdmin == 'Yes'"
+            >
+              <a [routerLink]="['users']">
+                <i class="icon-puzzle"></i><span>Users</span>
+              </a>
+            </li>
+            <li
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'pages' }"
+              *ngIf="isAdmin == 'Yes'"      
+            >
+              <a [routerLink]="['departments']">
+                <i class="icon-folder"></i><span>Departments </span>
+              </a>
+            </li>
+            <li
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              [ngClass]="{ open: currentActiveMenu == 'maps' }"
+            >
+              <a [routerLink]="['profile']">
+                <i class="icon-map"></i><span>Profile</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- <div class="col-12">
+        <ul class="nav navbar-nav top-icon">
+          <li class="dropdown app_menu hidden-sm" ngbDropdown>
+            <a
+              href="javascript:void(0);"
+              class="dropdown-toggle"
+              ngbDropdownToggle
+              ><i class="icon-grid"></i
+            ></a>
+            <ul class="dropdown-menu" ngbDropdownMenu>
+              <li>
+                <a [routerLink]="['app/mail-inbox']"
+                  ><i class="fa fa-envelope"></i><span>Mail</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['app/contact']"
+                  ><i class="fa fa-id-card"></i><span>Contacts</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['app/app-chat']"
+                  ><i class="fa fa-comments"></i><span>Chat</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['sample-pages/team-board']"
+                  ><i class="fa fa-users"></i><span>Teams</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['sample-pages/projects-list']"
+                  ><i class="fa fa-list-alt"></i><span>Projects</span></a
+                >
+              </li>
+              <li>
+                <a [routerLink]="['app/app-calendar']"
+                  ><i class="fa fa-calendar"></i><span>Calendar</span></a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li class="button-block">
+            <button
+              class="btn btn-primary btn-round float-right hidden-xs m-l-10"
+            >
+              Create New
+            </button>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+</aside>

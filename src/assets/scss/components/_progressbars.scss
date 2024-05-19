@@ -1,0 +1,41 @@
+﻿.progress {
+    @include border-radius(10px);
+    height: 10px;
+
+    .progress-bar {
+        line-height: 8px;
+        background-color: $blue-500;
+    }
+
+    .progress-bar-success {
+        background-color: $green-500;
+    }
+
+    .progress-bar-info {
+        background-color: $light-blue-500;
+    }
+
+    .progress-bar-warning {
+        background-color: $amber-500;
+    }
+
+    .progress-bar-danger {
+        background-color: $red-500;
+    }
+}
+.pro-bar{
+    .progress {
+        .progress-bar {
+            line-height: 9px;
+        }
+        &.progress-sm{
+            height: 10px;
+        }
+        &.progress-md{
+            height: 14px;
+        }
+        &.progress-lg{
+            height: 18px;
+        }
+    }
+}

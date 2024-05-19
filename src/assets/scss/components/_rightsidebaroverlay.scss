@@ -1,0 +1,339 @@
+﻿.overlay{
+    position: fixed;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    @extend .displaynone;
+    z-index: 12;
+}
+.light-warning-bg{
+  background-color: #FFF4DE !important;
+}
+.light-success-bg{
+  background-color: #C9F7F5 !important;
+}
+.light-danger-bg{
+  background-color: #FFE2E5 !important;
+}
+.light-info-bg{
+  background-color: #EEE5FF !important;
+}
+.light-primary-bg{
+  background-color: #E1F0FF !important;
+}
+.light{
+    .right-sidebar{
+        background: #ffffff;
+    }
+}
+
+.right-sidebar{
+    @include box-shadow(-2px 2px 5px rgba(255,255,255,0.1));
+    @include transition(.3s);
+    position: fixed;
+    overflow: hidden;
+    background: var(--card-color);
+    width: 340px;
+    right: -380px;
+    top: 0px;
+    z-index: 13 !important;
+    height: calc(100vh - 0px);
+    &.open {
+        right: 0;
+    }
+    .nav-tabs{
+      .nav-link {
+          border: 4px solid transparent;
+      }
+      + .tab-content {
+          @extend .padding-0;
+      }
+    }
+
+    .slim_scroll{
+        @extend .p-t-15;
+    }
+
+    .card{
+        @extend .m-b-0;
+        padding: 10px 20px;
+        box-shadow: none;
+
+        h6{
+            @extend .p-b-5;
+            @extend .m-b-15;
+            border-bottom: 1px solid var(--color-200);
+            font-weight: 500;
+        }
+        ul{
+            @extend .m-b-0;
+        }
+    }
+
+    .nav-tabs {
+      padding: 9px 20px;
+      border-bottom: 1px solid var(--color-200);
+    }
+
+    .theme-light-dark{
+        li{
+            @extend .inlineblock;
+        }
+    }
+    .nav-tabs>.nav-item>.nav-link{
+        padding: 5px 32px;
+    }
+    input {
+      height: 40px;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 40px;
+    }
+    .toggle {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .btn-twitter {
+        color: var(--color-fff);
+        background-color: #55acee;
+        border-color: #55acee;
+        box-shadow: 0 2px 2px 0 rgba(85, 172, 238, 0.14),
+        0 3px 1px -2px rgba(85, 172, 238, 0.2),
+        0 1px 5px 0 rgba(85, 172, 238, 0.12);
+    }
+    .btn-facebook {
+        color: var(--color-fff);
+        background-color: #3b5998;
+        border-color: #3b5998;
+        box-shadow: 0 2px 2px 0 rgba(59, 89, 152, 0.14),
+        0 3px 1px -2px rgba(59, 89, 152, 0.2),
+        0 1px 5px 0 rgba(59, 89, 152, 0.12);
+    }
+    .btn-instagram{
+        color: var(--color-fff);
+        background: #f09433;
+        background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+        box-shadow: 0 2px 2px 0 rgba(59, 89, 152, 0.14),
+        0 3px 1px -2px rgba(59, 89, 152, 0.2),
+        0 1px 5px 0 rgba(59, 89, 152, 0.12);
+    }
+  @media (max-width: 480px){
+      width: 300px;
+  }
+
+}
+
+.choose-skin {
+  li {
+
+      @extend .p-r-5;
+      @extend .inlineblock;
+      position: relative;
+      cursor: pointer;
+      &.active {
+          &:after {
+              font-family: 'Material Icons';
+              position: absolute;
+              top: 43%;
+              left: 46%;
+              content: '\E876';
+              font-size: 18px;
+              color: $white;
+              transform: translate(-50% , -50%);
+          }
+      }
+
+      div {
+          @extend .inlineblock;
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+      }
+
+      span {
+          position: relative;
+          bottom: 7px;
+          left: 5px;
+      }
+  }
+
+  @each $key, $val in $colors {
+      .#{$key} {
+          background-color: $val;
+      }
+  }
+}
+
+.tabbable-line {
+  padding-top: 15px;
+	.nav-tabs {
+		  border-bottom: 0px;
+      margin: 0px;
+      justify-content: space-around !important;
+      position: relative;
+      display: flex;
+      &::before{
+          position: absolute;
+          background-color: var(--color-200);
+          height: 1px;
+          width: 100%;
+          content: "";
+          bottom: 0px;
+          left: 0px;
+      }
+		li {
+			margin-right: 2px;
+			a {
+				border: 0px !important;
+				margin-right: 0 !important;
+        font-size: 18px !important;
+        color: #c3c3c3 !important;
+        font-weight: 500;
+        padding: 0px !important;
+				i {
+					color: #a6a6a6;
+          }
+          &.active {
+              position: relative;
+              background: transparent !important;
+              border: 0px !important;
+              a {
+                  border: 0;
+                  i {
+                      color: #404040;
+                  }
+              }
+              &:before{
+                  content: "";
+                  position: absolute;
+                  top:31px;
+                  left:0px;
+                  height: 4px;
+                  width: 100%;
+                  @media screen and (max-width: 767px) {
+                    top:35px;
+                  }
+              }
+          }
+			}
+			&:hover {
+				a {
+					border: 0;
+					background: none !important;
+                    position: relative;
+					i {
+						color: #a6a6a6;
+            }
+            &:before{
+                content: "";
+                position: absolute;
+                top:31px;
+                left:0px;
+                height: 4px;
+                width: 100%;
+            }
+				}
+				.dropdown-menu {
+					margin-top: 0px;
+				}
+      }
+		}
+		li.open {
+			a {
+				border: 0;
+				background: none !important;
+				i {
+					color: #a6a6a6;
+				}
+			}
+			.dropdown-menu {
+				margin-top: 0px;
+			}
+		}
+		li.active {
+			position: relative;
+			>a {
+				border: 0;
+				>i {
+					color: #404040;
+				}
+			}
+		}
+	}
+	.tab-content {
+		margin-top: -3px;
+		border: 0;
+    padding: 15px 0;
+    .notifications{
+      padding-top: 28px;
+        li{
+            padding: 5px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+
+            .media{
+                margin-bottom: 0px;
+                align-items: center;
+                img{
+                    border-radius: 4px;
+                }
+                .media-body{
+                    padding-left: 15px;
+                    .name{
+                        font-weight: $font-weight-bold;
+                        color: var(--dark-color);
+                        .time{
+                            float: right;
+                            font-weight: normal;
+                            font-size: 12px;
+                        }
+                    }
+                    .message{
+                        display: flex;
+                        font-size: 13px;
+                        line-height: 15px;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        width: 200px;
+                        color: var(--dark-color);
+                        @media (max-width: 480px){
+                            width: 185px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .tasks{
+        li{
+            margin-bottom: 20px;
+            .progress{
+                margin-top: 5px;
+            }
+        }
+    }
+    .setting{
+      padding-top: 28px;
+    }
+	}
+}
+
+@media (max-width: 767px){
+    .right-sidebar{
+        .slim_scroll{
+            padding-bottom: 40px;
+        }
+    }
+}
+

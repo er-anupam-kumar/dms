@@ -1,0 +1,380 @@
+﻿$white: #ffffff;
+$blue-grey-400: #78909c !default;
+$grey-900: #212121 !default;
+$purple-400: #c18eda !default;
+$purple-500: #a27ce6 !default;
+$purple-600: #a27ce6 !default;
+/**Filter var / mixin***/
+$color-2:$purple-500; // Minsk
+$S:     480px;
+$M:     768px;
+$L:     1170px;
+// media queries
+@mixin MQ($canvas) {
+@if $canvas == S {
+@media only screen and (min-width: $S) { @content; }
+}
+@else if $canvas == M {
+@media only screen and (min-width: $M) { @content; }
+}
+@else if $canvas == L {
+@media only screen and (min-width: $L) { @content; }
+}
+}
+
+.theme-purple{
+  .nav-tabs .nav-link.active {
+    border: 1px solid $purple-500 !important;
+    background: $purple-500;
+    color: var(--color-fff);
+  }
+  .tabbable-line .nav-tabs li a.active{
+    border: 0px !important;
+  }
+    .btn-primary{
+        background: $purple-500;
+        &:active,
+        &:hover,
+        &:focus{
+            background: $purple-400;
+        }
+        &.btn-simple{
+            border-color: $purple-500;
+            color: $purple-500;
+            background: transparent;
+        }
+    }
+
+    .page-loader-wrapper,
+    .active-bg,
+    .top_navbar,.sidebar{
+        background:$purple-500;
+        color: var(--color-fff);
+    }
+    &.left-menu{
+        .sidebar{
+            .menu{
+                .list{
+                    a{
+                        color: var(--color-fff);
+                        &:hover{
+                            color:var(--color-fff);
+                        }
+                    }
+                    li.active.open {
+                        .active a{
+                            color:var(--color-fff);
+                        }
+                    }
+                    .header{
+                        color:var(--color-fff);
+                    }
+                    .ml-menu{
+                        li{
+                            a{
+                                &:before{
+                                    color: var(--color-fff);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.h_menu{
+                .menu li{
+                    &.active.open{
+                        > a{
+                            color: var(--color-fff);
+                        }
+                    }
+                    a{
+                        &:hover{
+                            color: var(--color-fff);
+                        }
+                    }
+                    .ml-menu{
+                        li {
+                            a{
+                                color: var(--color-fff);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .sidebar{
+        &.h_menu{
+            .menu li{
+                &.active.open{
+                    > a{
+                        color: var(--color-fff);
+                        &:before{
+                            background: $white;
+                        }
+                    }
+                }
+                a{
+                    &:hover{
+                        color: var(--color-fff);
+                        &:before{
+                            background: $purple-500;
+                        }
+                    }
+                }
+                .ml-menu{
+                    li {
+                        a{
+                            color: $purple-500;
+                            &:before{
+                                color: $purple-500;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .checkbox input[type="checkbox"]:checked+label::after{
+        border-color:$purple-500;
+        background: $purple-500;
+        color: var(--color-fff);
+    }
+
+    .card{
+        .header{
+            h2{
+                &:before{
+                    background: $purple-500;
+                }
+                strong{
+                    color: $purple-500;
+                }
+            }
+            .dropdown-menu{
+                li{
+                    a{
+                        &:hover{
+                            background-color: $purple-500;
+                            color: var(--color-fff);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .authentication{
+        .navbar, .page-header{
+            background: $purple-500 !important;
+        }
+    }
+
+    .form-control:focus,
+    .form-control:focus+.input-group-addon, .form-control:focus ~ .input-group-addon{
+        border-color: $purple-500;
+    }
+    table{
+        .row-actions{
+            a{
+                color: $purple-500;
+            }
+        }
+    }
+    .users-list-w {
+        .user-w {
+            .user-action {
+                color: $purple-500;
+            }
+        }
+    }
+
+    .c-interaction {
+      &__button {
+          background:$purple-500;
+          &:after{
+              background:rgba(162,124,230,0.5);
+          }
+      }
+      &__input {
+          background:$purple-500;
+          &::placeholder {
+              color:var(--color-fff);
+          }
+      }
+    }
+    /***********project risk************/
+    .user-card2 {
+      .risk-rate {
+          span {
+              border: 6px dashed #d6d6d6;
+              border-top-color: $purple-400;
+              &:after {
+                background:rgba(162,124,230,0.2);
+              }
+          }
+
+      }
+      a{
+          color: $purple-400;
+      }
+  }
+  .fixed-plugin{
+    background:$purple-500;
+  }
+  .t-block{
+        .timeline-img {
+            background:$purple-400;
+        }
+        a{
+            background:$purple-400;
+            &:hover, &:active, &:focus {
+                background: darken($purple-400, 10%);
+            }
+        }
+  }
+  .tabbable-line {
+    .nav-tabs {
+        li {
+            a {
+                &.active {
+                    color: $purple-500 !important;
+                    a {
+                        border: 0;
+                        color: $purple-500;
+                    }
+                    &:before{
+                        background-color:$purple-500;
+                    }
+                }
+            }
+            &:hover {
+                a {
+                    color: $purple-500 !important;
+                    &:before{
+                        background-color:$purple-500;
+                    }
+                }
+            }
+        }
+        li.open {
+            a {
+                color:  $purple-500;
+            }
+        }
+        li.active {
+            a {
+                color: $purple-500;
+            }
+        }
+    }
+}
+.task{
+    thead,tfoot{
+        background-color:$purple-500;
+        color: var(--color-fff);
+    }
+}
+.navbar-nav{
+    li.app_menu{
+        ul{
+            li{
+                &:hover{
+                    background-color:$purple-500;
+                    border-color:$purple-500;
+                    a{
+                        color: $purple-500;
+                        i{
+                            color: $white;
+                        }
+                        span{
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.wizard{
+    >.actions{
+        a{
+            background: $purple-500;
+            &:hover, &:active {
+                background: $purple-500;
+            }
+        }
+    }
+}
+.cd-tab-filter {
+    ul {
+        box-shadow: inset 0 -2px 0 $color-2;
+    }
+    a {
+        &.selected {
+            background: $color-2;
+        }
+    }
+    &.is-open {
+        ul {
+            box-shadow: inset 0 -2px 0 $color-2, 0 2px 10px rgba(#000, .2);
+        }
+    }
+    @include MQ(M) {
+        a {
+            .no-touch &:hover {
+                color: $color-2;
+            }
+
+            &.selected {
+                color: $color-2;
+                box-shadow: inset 0 -2px 0 $color-2;
+            }
+        }
+    }
+}
+.cd-filter {
+    &::before {
+        background-color: $color-2;
+    }
+    .cd-close {
+        background: darken($color-2, 5%);
+        .no-touch &:hover {
+            background: darken($color-2, 8%);
+        }
+    }
+}
+.cd-filter-trigger {
+    @include MQ(L) {
+        .no-touch &:hover {
+            color: $color-2;
+        }
+    }
+}
+.cd-filter-block {
+    h4 {
+        .no-touch &:hover {
+            color: $color-2;
+        }
+    }
+    input[type='search'],
+    input[type='text'],
+    select {
+        &:focus {
+            border-color: $color-2;
+        }
+    }
+    input[type=radio]:checked + label::before,
+    input[type=checkbox]:checked + label::before {
+        border-color: $color-2;
+        background-color: $color-2;
+    }
+}
+.dd3-handle {
+    background:$purple-500 !important;
+}
+.block-header h2 a i {
+    color:$purple-500;
+}
+}

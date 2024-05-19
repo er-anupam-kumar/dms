@@ -1,0 +1,108 @@
+<section class="content">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h2><strong>Create</strong> Addon</h2>
+          </div>
+          <div class="body">
+            <form
+              #createAddonForm="ngForm"
+              ngNativeValidate
+              (ngSubmit)="addonUserValue(createAddonForm.value)"
+            >
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Addon name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="Addon name"
+                    maxlength="50"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Price</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="price"
+                    placeholder="Price"
+                    maxlength="10"
+                    step="0.01"
+                    min="1"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label> Addon type</label>
+                  <select
+                    class="custom-select"
+                    name="type"
+                    [ngModel]="addontype"
+                  >
+                    <option value="0">User based</option>
+                    <option value="1">Storage based</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Addon type value</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="value"
+                    placeholder="Value"
+                    maxlength="10"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-12">
+                  <label>Addon description</label>
+                  <textarea
+                    cols="10"
+                    rows="3"
+                    type="text"
+                    class="form-control"
+                    name="description"
+                    placeholder="Description"
+                    required
+                    ngModel
+                  ></textarea>
+                </div>
+                <div class="form-group col-md-12">
+                  <label>Status </label>
+                  <select
+                    class="custom-select"
+                    name="status"
+                    [ngModel]="status"
+                  >
+                    <option value="0">Inactive</option>
+                    <option value="1">Active</option>
+                  </select>
+                </div>
+                <div class="col-md-12 mt-4">
+                  <a routerLink="/admin/app/all-add-ons">
+                    <button type="" class="btn">Cancel</button></a
+                  >
+                  <button
+                    type="submit"
+                    [disabled]="buttonDisabled"
+                    class="btn btn-primary float-right"
+                  >
+                    Create Addon
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

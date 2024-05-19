@@ -1,0 +1,207 @@
+<section class="content">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="body">
+          <form
+            #registrationForm="ngForm"
+            ngNativeValidate
+            (ngSubmit)="registrationValue(registrationForm.value)"
+          >
+            <div class="card">
+              <div class="header">
+                <h2><strong>Create</strong> Registration</h2>
+              </div>
+              <div class="row p-4">
+                <div class="form-group col-md-6">
+                  <label>Company name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="company_name"
+                    placeholder="Company name"
+                    maxlength="50"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="address"
+                    placeholder="Address"
+                    maxlength="50"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="city"
+                    placeholder="City"
+                    maxlength="30"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>State</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="state"
+                    placeholder="State"
+                    maxlength="30"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Country</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="country"
+                    placeholder="Country"
+                    maxlength="30"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Tax registration no.</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="tax_registration_number"
+                    placeholder="Tax registration number"
+                    maxlength="25"
+                    ngModel
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Contact person name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="contact_person_name"
+                    placeholder="Contact person name"
+                    maxlength="50"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Contact person phone</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="contact_person_phone"
+                    placeholder="Contact person phone"
+                    maxlength="13"
+                    pattern="[0-9]{7,13}"
+                    title="Please enter valid phone number"
+                    required
+                    ngModel
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Contact person email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="contact_person_email"
+                    placeholder="Contact person email"
+                    maxlength="50"
+                    required
+                    ngModel
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label>Select Plan</label>
+                  <select
+                    class="custom-select"
+                    ngModel
+                    name="plan"
+                  >
+                    <option value="">Select Plan</option>
+                    <ng-container *ngFor="let item of rows">
+                      <option value="{{ item.id }}" *ngIf="item.status == '1'">
+                        {{ item.name }}
+                      </option>
+                    </ng-container>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Payment method</label>
+                  <select
+                    class="custom-select"
+                    [ngModel]="payment_method"
+                    name="payment_method"
+                  >
+                    <option value="0">Online</option>
+                    <option value="1">Offline</option>
+                  </select>
+                </div>
+                <div
+                  class="form-group col-md-12"
+                  *ngIf="registrationForm.value.payment_method == '1'"
+                >
+                  <label>Offline payment remark</label>
+                  <textarea
+                    cols="10"
+                    rows="3"
+                    type="text"
+                    class="form-control"
+                    name="payment_remarks"
+                    placeholder="Payment remarks"
+                    ngModel
+                  >
+                  </textarea>
+                </div>
+                <div class="form-group col-md-12">
+                  <label>Status</label>
+                  <select
+                    class="custom-select"
+                    name="status"
+                    [ngModel]="statusUser"
+                  >
+                    <option value="0">Inactive</option>
+                    <option value="1">Active</option>
+                  </select>
+                </div>
+                <div class="col-md-12 mt-4">
+                  <a routerLink="/admin/app/all-registration">
+                    <button class="btn">Cancel</button>
+                  </a>
+                  <button
+                    type="submit"
+                    [disabled]="buttonDisabled"
+                    class="btn btn-primary float-right"
+                  >
+                    Create Registration
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

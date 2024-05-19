@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h6>Favorites Files</h6>
+  </div>
+  <ng-container *ngIf="files.length != 0">
+    <div class="col-xl-3 col-lg-4 col-md-12 mt-2" *ngFor="let file of files">
+      <div
+      class="card hover"
+      (contextmenu)="openMenu($event, file.id, 'file')"
+      (click)="openFile(file.id)"
+      >
+      <div class="file">
+        <a href="javascript:void(0);">
+          <div class="hover" *ngIf="file.modify == 'Yes' && file.deletable == 'Yes'">
+            <button type="button" (click)=" deleteFileOrFolder(file.id, 'file'); $event.stopPropagation()" class="btn btn-icon btn-icon-mini btn-round btn-danger">
+              <i class="zmdi zmdi-delete"></i>
+            </button>
+          </div>
+          <div class="image" *ngIf="['jpg', 'jpeg', 'png', 'svg'].includes(file.type.toString().toLowerCase())">
+            <img src="{{ file.path }}" alt="img" class="img-fluid" />
+          </div>
+
+          <div class="icon" *ngIf="file.type.toString().toLowerCase() == 'pdf'">
+            <i class="zmdi zmdi-collection-pdf"></i>
+          </div>
+
+          <div class="icon" *ngIf="file.type.toString().toLowerCase() == 'txt'">
+            <i class="zmdi zmdi-file-text"></i>
+          </div>
+
+          <div class="icon" *ngIf="['mp4', 'avi', 'mpeg4'].includes(file.type.toString().toLowerCase())">
+            <i class="zmdi zmdi-collection-video"></i>
+          </div>
+
+          <div class="icon" *ngIf=" !['mp4', 'avi', 'mpeg4'].includes(file.type.toString().toLowerCase()) && !['jpg', 'jpeg', 'png', 'svg'].includes(file.type.toString().toLowerCase()) && file.type.toString().toLowerCase() != 'pdf' && file.type.toString().toLowerCase() != 'txt'">
+            <i class="zmdi zmdi-file"></i>
+          </div>
+          <div class="file-name">
+            <p class="m-b-5 text-dark">
+              {{ file.name.length > 18 ? file.name.slice(0, 18) + " ..." : file.name }}
+            </p>
+            <small>{{ file.size }}
+              <span class="date text-muted">
+                {{ file.created_at}}
+              </span>
+            </small>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="files.length == 0">
+  <div class="col-sm-12 mt-2">
+    <div class="card bg-white text-dark py-4 px-2">
+      <p class="mb-0">
+        <i class="material-icons mr-2 font-18">error</i> This directory has no
+        files.
+      </p>
+    </div>
+  </div>
+</ng-container>
+</div>

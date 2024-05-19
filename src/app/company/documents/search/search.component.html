@@ -1,0 +1,64 @@
+<div class="row clearfix">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="header">
+        <h2><strong>Search</strong> results</h2>
+      </div>
+      <div class="body">
+        <ngx-datatable
+        style="border-radius: 10px"
+        #myFilterTable
+        class="bootstrap"
+        [rows]="rows"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [limit]="20"
+        [scrollbarV]="false"
+        [sorts]="[{ prop: 'created_at', dir: 'desc' }]"
+        >
+<!--           <ngx-datatable-column name="S.no." prop="id" [width]="75">
+            <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+              {{ rowIndex + 1 }}
+            </ng-template>
+          </ngx-datatable-column> -->
+
+          <ngx-datatable-column name="File Name" prop="name">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row.name }}
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Location" prop="location">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <a routerLink="/company/documents/folders/{{row.folder_id}}">
+                {{row.location}}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Size" prop="size">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row.size }}
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Created At" prop="created_at">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row.created_at }}
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Action" [sortable]="false" [width]="120">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <i class="fa fa-eye text-success icon-cursor-pointer" (click)="openFile(row.id)"  aria-hidden="true"></i>              
+              <i class="fa fa-download  ml-2 text-primary icon-cursor-pointer" (click)="downLoadFile(row.id)" aria-hidden="true"></i>
+              <i *ngIf="row.modify == 'Yes' && row.deletable == 'Yes'" (click)="deleteFile(row.id, 'file')" class="fa fa-trash text-danger ml-2 icon-cursor-pointer" aria-hidden="true"></i>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+</div>

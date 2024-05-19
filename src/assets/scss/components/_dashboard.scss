@@ -1,0 +1,45 @@
+﻿
+.visitors-chart {
+    @extend .align-center;
+
+    .donut_chart{
+        height: 270px;
+        @extend .m-b-20;
+    }
+    span{
+        @extend .m-r-15;
+        i{
+            font-size: 15px;
+            @extend .m-r-5;
+        }
+    }
+}
+.font-lg{
+  font-size: 18px;
+}
+.font-md{
+  font-size: 12px;
+  @media only screen and (max-width:1366px) {
+      font-size: 11px;
+  }
+}
+.border-left-4x{
+  &:before{
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 100%;
+      left: 0px;
+      top:0px;
+  }
+  &.border-green{
+      &:before{
+          background-color: var(--green);
+      }
+  }
+  &.border-red{
+      &:before{
+          background-color: var(--red);
+      }
+  }
+}

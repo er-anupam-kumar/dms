@@ -1,0 +1,110 @@
+.login-left,
+.login-right {
+  height: 100vh;
+}
+
+.login-right {
+  color: #fff;
+  background-image: url("./../../../../assets/images/bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.login-right-background {
+  background-color: #e47297ba;
+  // height: 100vh;
+}
+.login-rightSide-img img {
+  width: 100%;
+  // margin-left: 40px;
+  height: 100%;
+}
+.login-right-background {
+  background-color: #e47297ba;
+  height: 100vh;
+}
+
+.login-right h2,
+.Feature-h2 {
+  margin: 0;
+  padding: 15px;
+  font-size: 22px;
+  line-height: 22px;
+  font-weight: 600;
+}
+.login-right h6 {
+  margin: 15px 0;
+}
+.login-right ul {
+  list-style-type: disc;
+  line-height: 1.7;
+}
+.login-right .i-background {
+  font-size: 1.5rem;
+  background-color: #e47297;
+  box-shadow: #111 1px 1px 10px;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.login-right .i-background-color {
+  font-size: 1.5rem;
+  background-color: #e47297;
+  color: #fff;
+  box-shadow: #111 1px 1px 10px;
+  padding: 0.5rem;
+  border: 0.2rem solid #ecbbcb;
+  border-radius: 50%;
+}
+.login-right .i-no-background-color {
+  color: #e47297;
+  font-size: 2rem;
+  text-shadow: #111 1px 1px 10px;
+  margin-left: 10px;
+}
+
+.login-right .feature-rich p {
+  font-size: 14px;
+}
+.login-right .feature-rich .feature-border {
+  border-right: 1px solid #d3d3d3;
+}
+
+.login-rightSide-img {
+  max-width: 175px;
+  height: auto;
+}
+
+.login-brand {
+  margin-top: 3rem;
+}
+.login-brand p {
+  font-size: 16px;
+  font-weight: 600;
+  width: 171px;
+  line-height: 18px;
+}
+.login-brand span {
+  font-size: 20px;
+  background-color: #e47297;
+  color: #fff;
+  padding: 5px 30px;
+  box-shadow: #111 1px 1px 10px;
+  line-height: 55px;
+  border-radius: 10px;
+}
+.login-left,
+.login-rightSide-img-col,
+.login-rightSide-list-col,
+.login-rightSide-icon-col,
+.login-right-problems-i-box,
+.login-right-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  font-size: 14px;
+}
+
